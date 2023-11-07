@@ -1,0 +1,154 @@
+.app-root {
+  /* Background setup */
+  background-image: url("/assets/asset_fossilwall.svg");
+  background-size: 22rem;
+  background-color: var(--body-background-color);
+  background-attachment: fixed;
+
+  /* The rest */
+  color: var(--body-text-color);
+  cursor: url("/assets/mouse1.cur"), auto; /* Default cursor */
+  overflow-x: hidden; /* Since we have a toothrack on the header, the rotation will push the page out and create scrollbars. We do not want that. */
+
+  /* Defines the main layout (header '😊', main '📃' and footer '🥾') */
+  display: block;
+}
+
+/**
+ * Sets the maximum width for the elements in the page
+ */
+.page-width {
+  @media screen and (min-width: 1024px) {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+}
+
+/* ----------------------------------------------------------
+ * Main layout blocks (header, main, footer)
+ * ----------------------------------------------------------*/
+.app-root > header {
+  --color: var(--accent-color);
+  --rotate: -3.4deg;
+  --height: 3.4em;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 8em;
+  &::before,
+  &::after {
+    background-image: url("/assets/asset_fossilwall.svg");
+    background-blend-mode: difference;
+    background-size: 22em;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    position: absolute;
+    z-index: 10;
+  }
+  &::before {
+    content: "";
+    background-color: var(--accent-color);
+    rotate: calc(var(--rotate, 4.2deg) + 1deg);
+    translate: 0 -1em;
+    top: -11.1em;
+    bottom: 0;
+  }
+  &::after {
+    rotate: calc((var(--rotate, 4.2deg) * -1) - 180deg);
+  }
+
+  .group {
+    display: flex;
+    position: relative;
+    z-index: 11;
+    height: 100%;
+    width: 100%;
+    .logo-group {
+      padding: 0 var(--text-margin);
+    }
+  }
+}
+
+.app-root > main {
+  position: relative;
+  color: var(--section-text-color);
+  width: 100%;
+  min-height: 100dvh;
+  background: var(--body-background-color);
+  contain: content;
+  @media screen and (min-width: 1024px) {
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 5;
+      mask-image: url("/assets/asset_toothrack.svg");
+      mask-repeat: repeat-x;
+      top: 0;
+      height: 11rem;
+    }
+    &::before {
+      transform-origin: bottom left;
+      rotate: 90deg;
+      left: -10.5rem;
+      right: min(-100vw, -100vh);
+      background: linear-gradient(
+        180deg,
+        var(--body-background-color) 13px,
+        transparent 22px
+      );
+    }
+    &::after {
+      transform-origin: top right;
+      rotate: -90deg;
+      right: 6px;
+      left: min(-100vw, -100vh);
+      background: linear-gradient(
+        -180deg,
+        var(--body-background-color) 13px,
+        transparent 22px
+      );
+    }
+  }
+}
+
+.app-root > footer {
+  --color: var(--body-background-color);
+  background-color: var(--body-background-color);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 6rem;
+  .links {
+    height: 100%;
+    display: flex;
+    place-content: space-evenly;
+    padding: 10px var(--text-margin);
+    place-items: center;
+    font-size: 1.5em;
+    a {
+      color: inherit;
+      font-weight: bolder;
+      position: relative;
+      z-index: 2;
+    }
+    .logo-group {
+      display: flex;
+      filter: invert(100%);
+      grid-area: 5 / 1 / 6 / -1; /* Push the logo to the bottom (row 5 - 6) on mobile displays */
+    }
+    @media screen and (max-width: 980px) {
+      display: grid;
+      grid-template-rows: repeat(auto-fit, auto);
+      grid-template-columns: 1fr;
+      margin-bottom: 1rem;
+      .logo-group {
+        max-width: unset;
+        min-height: 4em;
+      }
+    }
+  }
+}

@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+/**
+ * This file represents the global stylesheet for the application.
+ * You can add global styles to this file, and also import other style files
+ */
+// The CSS variables used throughout the application
+@import "styles/_variables";
+// The font setup
+@import "styles/_fonts";
+// The base styles for the application
+@import "styles/_elements";
+// Layout rules
+@import "styles/_layout";
+// Custom dialogs
+@import "styles/_dialog";

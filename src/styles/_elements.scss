@@ -1,0 +1,157 @@
+/* ----------------------------------------------------------
+ * Global element style
+ * ----------------------------------------------------------*/
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  min-height: 100dvh; /* Page should take up the entire viewport height */
+}
+html {
+  font-size: 13px; /* Base font size */
+}
+a {
+  color: var(--accent-color);
+}
+a:hover,
+button:hover {
+  cursor: url("/assets/mouse2.cur"), auto; /* Cursor for hvering buttons */
+}
+label,
+input {
+  cursor: url("/assets/mouse3.cur"), auto; /* Cursor for hovering inputs */
+}
+h1,
+h2 {
+  text-transform: uppercase;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 2;
+  color: var(--section-text-color);
+  background-color: var(--section-background-color);
+  display: inline-block;
+  padding: 0 var(--text-margin);
+}
+h1 {
+  font-size: clamp(2rem, -0.697rem + 5.776vw, 4rem);
+}
+h2 {
+  font-size: clamp(1.5rem, -0.697rem + 5.776vw, 3rem);
+  @media screen and (min-width: 480px) {
+    line-height: 0.9em;
+    height: 0.8em;
+  }
+}
+header {
+  display: flex;
+  &:not(.right) h2 {
+    margin-right: var(--text-margin);
+  }
+  &.right {
+    justify-content: flex-end;
+    h2 {
+      margin-left: var(--text-margin);
+    }
+  }
+}
+.toothrack.top h2 {
+  margin-top: -0.8em;
+}
+
+body {
+  margin: 0;
+  display: grid;
+}
+
+/* ----------------------------------------------------------
+ * Custom class styles
+ * ----------------------------------------------------------*/
+/* Buttons */
+.button-link {
+  text-transform: uppercase;
+  background: var(--button-background-color);
+  color: var(--button-text-color);
+  font-weight: bolder;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 1.5em;
+  border: none;
+  font-weight: normal;
+}
+
+/*
+ * This class uses variables to allow for flexible customization
+ *  --color: specify a color to colorize the toothrack svg
+ *  --rotate: specify a rotation to perform. The rotation will be a negative for top
+ *  --height: specify the amount of space the toothrack pushes upward/downward
+ */
+.toothrack {
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    mask-repeat: repeat-x;
+    top: 0;
+    bottom: 0;
+    left: -1rem;
+    right: -6px;
+    pointer-events: none;
+  }
+  &.top::before,
+  &.bottom::after {
+    mask-image: url("/assets/asset_toothrack.svg");
+    background-color: var(--color);
+  }
+  &.top::before {
+    top: calc(var(--height, 2.8em) * 2 * -1);
+    height: calc(var(--height, 2.8em) * 4);
+    rotate: calc((var(--rotate, 4.2deg) * -1) - 180deg);
+  }
+  &.bottom::after {
+    rotate: var(--rotate, 4.2deg);
+    bottom: calc(var(--height, 2.8em) * -1);
+  }
+  &.reverse::before,
+  &.reverse::after {
+    scale: -1 1;
+  }
+  &.reverse.top::before {
+    rotate: calc((var(--rotate, 4.2deg)) - 180deg);
+  }
+  &.reverse.bottom::after {
+    rotate: calc(var(--rotate, 4.2deg) * -1);
+  }
+}
+
+.section:has(+ .toothrack) {
+  padding-bottom: 5em;
+}
+
+.links {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  list-style: none;
+  text-transform: uppercase;
+  display: flex;
+  place-content: space-between;
+  place-items: center;
+  .logo-group {
+    max-width: 25%;
+    grid-area: 5 / 1 / 6 / -1; /* Push the logo to the bottom (row 5 - 6) on mobile displays */
+    aspect-ratio: 5;
+  }
+}
+
+.logo-group {
+  display: flex;
+  flex-wrap: nowrap;
+  flex: 1;
+  max-height: clamp(4em, 17vw, 8em);
+  aspect-ratio: 5;
+  img {
+    height: 100%;
+  }
+}

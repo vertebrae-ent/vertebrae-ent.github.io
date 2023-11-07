@@ -1,0 +1,89 @@
+{
+  "sections": [
+    {
+      "type": "hero",
+      "backdropImage": "assets/concept/fangstconcept4.webp",
+      "logo": "assets/concept/logo_Fangst_full.svg",
+      "actions": [
+        {
+          "name": "Learn more",
+          "url": ""
+        },
+        {
+          "name": "Wishlist",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "type": "carousel",
+      "header": "Our projects",
+      "headerPosition": "right",
+      "class": "toothrack top",
+      "images": []
+    },
+    {
+      "type": "text",
+      "header": "We are Vertebrae Entertainment",
+      "text": "People kept telling us that if we wanted to see people like us in games, we should just make them ourselves. \n\nSo we did!",
+      "class": "toothrack top reverse",
+      "actions": [],
+      "image": {
+        "position": "after",
+        "url": "assets/asset_slogan.svg"
+      }
+    },
+    {
+      "type": "social",
+      "header": "Get in touch",
+      "headerPosition": "right",
+      "class": "toothrack top",
+      "links": [
+        {
+          "name": "Discord",
+          "url": "",
+          "image": "assets/icons/discord.svg"
+        },
+        {
+          "name": "Twitter",
+          "url": "",
+          "image": "assets/icons/twitter.svg"
+        },
+        {
+          "name": "Tumblr",
+          "url": "",
+          "image": "assets/icons/tumblr.svg"
+        },
+        {
+          "name": "YouTube",
+          "url": "",
+          "image": "assets/icons/youtube.svg"
+        },
+        {
+          "name": "Mail",
+          "action": "newsletter",
+          "image": "assets/icons/mail.svg"
+        }
+      ]
+    }
+  ],
+  "articles": [],
+  "linkList": [
+    {
+      "name": "About us",
+      "url": ""
+    },
+    {
+      "name": "Our projects",
+      "url": ""
+    },
+    {
+      "name": "Devlog",
+      "url": ""
+    },
+    {
+      "name": "Presskit",
+      "url": ""
+    }
+  ]
+}

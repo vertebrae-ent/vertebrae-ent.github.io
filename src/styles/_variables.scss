@@ -1,0 +1,21 @@
+/* ----------------------------------------------------------
+ * Global variables
+ * ----------------------------------------------------------*/
+:root {
+  // Colors
+  --body-background-color: #1f292a;
+  --body-text-color: #ffffff;
+  --accent-color: #d12229;
+  --grey-color: hsl(185, 10%, 22%);
+  --section-background-color: #ffffff;
+  --section-text-color: var(--body-background-color);
+  --button-background-color: var(--accent-color);
+  --button-text-color: var(--section-background-color);
+  --article-background-color: var(--section-background-color);
+
+  // Fonts
+  --main-font-family: "Bahnschrift";
+
+  // Paddings
+  --text-margin: 3rem;
+}

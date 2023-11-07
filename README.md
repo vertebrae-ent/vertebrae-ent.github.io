@@ -1,27 +1,46 @@
-# Vertebrae
+# Vertebrae Entertainment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.7.
+## Micro Content Management System - Introduction
 
-## Development server
+This is a custom made json based CMS using plain web components to render it's content.
+The configuration is located under `./src/.root/index.json`, and each blog post is a markdown file
+located under `./src/.root/_posts`.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Below is a small documentation of the json structure we support.
 
-## Code scaffolding
+```
+{
+  "sections": [],  <-- Contains the content for the main landing page
+  "articles": [],  <-- Links to posts/articles, like a blog post or some news
+  "linkList": []   <-- Footer links
+}
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## `sections` Overview
 
-## Build
+The section defines one piece of content. There are also some common properties for all content-types, but also some specific to a particular type. Let's go over the common ones first:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- `header` - **(Optional)** which defines the title for the section
+- `headerPosition` - **(Optional)** which allows you to customize the alignment of the header ("left" _default if not provided_ or "right")
+- `type` - **(Required)** the content-type, which determines which other properties we can set on this section.
 
-## Running unit tests
+Each section must have a `type`. These are the different types we support:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### `hero`
 
-## Running end-to-end tests
+A hero element is usually an image but can also be a text, a slogan, something eye-catchy, which creates a "selling-point" for the product or company. It can also contain an action or two - links to the product or something related to the product. So the additional properties available for sections of `"type": "hero"` are:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- `image` - a url to an image
+- `actions` - an array of `{ "name": "the_link_text", "url": "the_url_for_the_link" }`
 
-## Further help
+### `carousel`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This type of element works as a show-case
+
+### `social`
+
+### `text`
+
+## `articles` Overview
+
+## `linkList` Overview

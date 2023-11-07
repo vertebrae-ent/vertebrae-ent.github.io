@@ -1,0 +1,10 @@
+@for (section of sections(); track section) { @switch (section.type) {
+@case('hero') {
+<app-section-hero [section]="section"></app-section-hero>
+} @case ('carousel') {
+<app-section-carousel [section]="section"></app-section-carousel>
+} @case ('social') {
+<app-section-social [section]="section"></app-section-social>
+} @case ('text') {
+<app-section-text [section]="section"></app-section-text>
+} } }
