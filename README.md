@@ -1,5 +1,21 @@
 # Vertebrae Entertainment
 
+## How to run this
+
+```
+npm install
+npm start
+```
+
+This will install the dependencies and start the project locally. You may view the result in `http://localhost:4200`.
+
+In order to publish this to github pages, run:
+
+```
+npm run build --prod --base-href "https://vertebrae-ent.github.io/"
+npx angular-cli-ghpages --dir=dist/vertebrae
+```
+
 ## Micro Content Management System - Introduction
 
 This is a custom made json based CMS using plain web components to render it's content.
