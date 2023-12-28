@@ -29,7 +29,7 @@ export type CMSSectionType = 'hero' | 'carousel' | 'text' | 'social';
  * specific `CMSSectionType*` interfaces below.
  *
  * The actual rendering implementation for each section type is
- * defined in the `src/app/views/landing-page/sections` folder.
+ * defined in the `src/app/views/home/sections` folder.
  */
 export interface CMSSection {
   /** The type of section */

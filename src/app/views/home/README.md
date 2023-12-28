@@ -1,6 +1,6 @@
 [To views](../README.md) | [To app](../../README.md) | [To root](../../../../README.md)
 
-The landing page. Each section of the landing page is its own component and can be found under `src/app/views/landing-page/sections`. We have:
+The landing page. Each section of the landing page is its own component and can be found under `src/app/views/home/sections`. We have:
 
 ## [Hero component](./sections/hero.component.ts)
 

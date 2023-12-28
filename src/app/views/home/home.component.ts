@@ -10,9 +10,9 @@ import { AppSectionTextComponent } from './sections/text.component';
  * Renders the main landing page.
  */
 @Component({
-  selector: 'app-main',
-  templateUrl: 'landing-page.component.html',
-  styleUrls: ['landing-page.component.scss'],
+  selector: 'app-home',
+  templateUrl: 'home.component.html',
+  styleUrls: ['home.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -22,7 +22,7 @@ import { AppSectionTextComponent } from './sections/text.component';
     AppSectionTextComponent,
   ],
 })
-export class AppMainComponent {
+export class AppHomeComponent {
   service = inject(AppService);
 
   sections = computed(() => this.service.config().home);
