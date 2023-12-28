@@ -7,3 +7,7 @@
       Web development
       - Øystein Amundsen
 
+      Game developers
+      - Hauk
+      - Åge Markus Eriksen
+

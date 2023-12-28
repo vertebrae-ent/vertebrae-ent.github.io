@@ -6,9 +6,9 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { firstValueFrom } from 'rxjs';
 import { CMSConfig, CMSLinks } from './app.model';
-import { DomSanitizer } from '@angular/platform-browser';
 
 /**
  * The main application service will read in the configuration,
@@ -24,7 +24,7 @@ export class AppService {
     // It will read the `./index.json` file when the service is created
     // and make the configuration available via the `config` property.
     firstValueFrom(this.http.get<CMSConfig>('/index.json')).then((config) =>
-      this.config.set(config)
+      this.config.set(config),
     );
   }
 
@@ -43,7 +43,11 @@ export class AppService {
           l.image = this.sec.bypassSecurityTrustResourceUrl(l.image);
         }
         if (l.url && typeof l.url === 'string') {
-          l.url = this.sec.bypassSecurityTrustUrl(l.url);
+          l.target = l.target || l.url.startsWith('http') ? '_blank' : '_self';
+          l.isInternal = l.url.startsWith('/');
+          l.url = !l.isInternal
+            ? this.sec.bypassSecurityTrustUrl(l.url)
+            : l.url;
         }
         if (l.action) {
           switch (l.action) {

@@ -1,5 +1,5 @@
 {
-  "sections": [
+  "home": [
     {
       "type": "hero",
       "backdropImage": "assets/concept/fangstconcept4.webp",
@@ -7,7 +7,7 @@
       "actions": [
         {
           "name": "Learn more",
-          "url": ""
+          "url": "/projects"
         },
         {
           "name": "Wishlist",
@@ -20,7 +20,20 @@
       "header": "Our projects",
       "headerPosition": "right",
       "class": "toothrack top",
-      "images": []
+      "images": [
+        {
+          "url": "assets/projects/LS_Final.webp",
+          "header": "Liquid State",
+          "text": "",
+          "link": "/projects"
+        },
+        {
+          "url": "assets/concept/logo_Fangst_full.svg",
+          "header": "Fangst",
+          "text": "",
+          "link": "/projects"
+        }
+      ]
     },
     {
       "type": "text",
@@ -41,22 +54,22 @@
       "links": [
         {
           "name": "Discord",
-          "url": "",
+          "url": "https://discord.gg/b7FpnKtsy3",
           "image": "assets/icons/discord.svg"
         },
         {
           "name": "Twitter",
-          "url": "",
+          "url": "https://twitter.com/vertebraeent",
           "image": "assets/icons/twitter.svg"
         },
         {
           "name": "Tumblr",
-          "url": "",
+          "url": "https://vertebrae-entertainment.tumblr.com/",
           "image": "assets/icons/tumblr.svg"
         },
         {
           "name": "YouTube",
-          "url": "",
+          "url": "https://www.youtube.com/@vertebraeent",
           "image": "assets/icons/youtube.svg"
         },
         {
@@ -67,19 +80,20 @@
       ]
     }
   ],
-  "articles": [],
+  "about": {},
+  "projects": {},
   "linkList": [
     {
       "name": "About us",
-      "url": ""
+      "url": "/about"
     },
     {
       "name": "Our projects",
-      "url": ""
+      "url": "/projects"
     },
     {
       "name": "Devlog",
-      "url": ""
+      "url": "https://vertebrae-entertainment.tumblr.com/"
     },
     {
       "name": "Presskit",

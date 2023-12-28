@@ -1,10 +1,10 @@
 <header class="toothrack bottom">
-  <div class="group page-width">
+  <a class="group page-width" [routerLink]="['/']" aria-label="To homepage">
     <hgroup class="logo-group">
-      <img src="assets/logo_spinecoil.svg" />
-      <img src="assets/logo_vertebraetext.svg" />
+      <img src="assets/logo_spinecoil.svg" alt="Company logo" />
+      <img src="assets/logo_vertebraetext.svg" alt="Company logo" />
     </hgroup>
-  </div>
+  </a>
 </header>
 
 <main class="page-width">
@@ -13,10 +13,10 @@
 
 <footer>
   <app-linklist class="page-width">
-    <div class="logo-group">
-      <img src="assets/logo_spinecoil.svg" />
-      <img src="assets/logo_vertebraetext.svg" />
-    </div>
+    <a class="logo-group" [routerLink]="['/']" aria-label="To homepage">
+      <img src="assets/logo_spinecoil.svg" alt="Company logo" />
+      <img src="assets/logo_vertebraetext.svg" alt="Company logo" />
+    </a>
   </app-linklist>
 </footer>
 
@@ -25,9 +25,9 @@
   <header>
     <div>
       @if (userRequestedNag()) {
-      <h1>Sign up to our newsletter!</h1>
+        <h1>Sign up to our newsletter!</h1>
       } @else {
-      <h1>Hold up!</h1>
+        <h1>Hold up!</h1>
       }
     </div>
     <button type="reset" (click)="closeNagDialog($event)">X</button>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostBinding, Input, computed } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { CMSSection, CMSSectionTypeText } from 'src/app/app.model';
 import { AbstractSectionComponent } from './abstract-section.component';
 
@@ -14,15 +14,20 @@ import { AbstractSectionComponent } from './abstract-section.component';
       --color: var(--grey-color);
       display: block;
       background-color: var(--color);
+      @media screen and (max-width: 640px) {
+        &.toothrack:has(img) {
+          padding-bottom: 3em;
+        }
+      }
     }
     .content {
       display: grid;
       grid-template-columns: 1fr 21rem;
-      place-items: center;
       @media screen and (max-width: 640px) {
         grid-template-columns: 1fr;
         img {
-          max-height: 13rem;
+          max-height: 10em;
+          margin-left: var(--text-margin);
         }
       }
       div {
@@ -45,11 +50,19 @@ import { AbstractSectionComponent } from './abstract-section.component';
     </header>
     <div class="content">
       @if (_section().image != null && _section().image.position === 'before') {
-      <img [src]="_section().image.url" />
+        <img
+          [src]="_section().image.url"
+          [alt]="_section().image.header || _section().image.text"
+          height="130"
+        />
       }
       <div>{{ _section().text }}</div>
       @if (_section().image != null && _section().image.position === 'after') {
-      <img [src]="_section().image.url" />
+        <img
+          [src]="_section().image.url"
+          [alt]="_section().image.header || _section().image.text"
+          height="130"
+        />
       }
     </div>
   `,
@@ -67,7 +80,7 @@ export class AppSectionTextComponent extends AbstractSectionComponent<CMSSection
     const data = structuredClone(section) as CMSSectionTypeText;
     if (data.image) {
       data.image.url = this.sec.bypassSecurityTrustResourceUrl(
-        data.image.url as string
+        data.image.url as string,
       );
     }
     // Set to component state

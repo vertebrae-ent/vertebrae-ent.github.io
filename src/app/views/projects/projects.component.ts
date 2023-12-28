@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-about-us',
-  template: ` <h1>About Us</h1> `,
+  selector: 'app-projects',
+  template: ` <h1>Projects</h1> `,
   styles: `
   :host {
     display: block;
@@ -16,4 +16,4 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
 })
-export class AppAboutUsComponent {}
+export class AppProjectsComponent {}

@@ -11,8 +11,8 @@ import {
   signal,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AppLinkListComponent } from './shared/link-list.component';
 import { AppService } from './app.service';
+import { AppLinkListComponent } from './shared/link-list.component';
 
 /**
  * The main application component.
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
    */
   ngOnInit(): void {
     this.service.showNewsLetterDialog$.subscribe((val) =>
-      this.openNagDialog(undefined, true)
+      this.openNagDialog(undefined, true),
     );
   }
 

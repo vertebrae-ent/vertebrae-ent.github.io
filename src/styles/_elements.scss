@@ -57,6 +57,7 @@ header {
 }
 .toothrack.top h2 {
   margin-top: -0.8em;
+  margin-bottom: 0.3em;
 }
 
 body {
@@ -149,7 +150,7 @@ body {
   display: flex;
   flex-wrap: nowrap;
   flex: 1;
-  max-height: clamp(4em, 17vw, 8em);
+  max-height: clamp(3em, 17vw, 6em);
   aspect-ratio: 5;
   img {
     height: 100%;

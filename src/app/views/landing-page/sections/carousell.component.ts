@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostBinding, Input, computed } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CMSSection, CMSSectionTypeCarousel } from 'src/app/app.model';
 import { AbstractSectionComponent } from './abstract-section.component';
 
@@ -16,30 +17,60 @@ import { AbstractSectionComponent } from './abstract-section.component';
         --color: var(--body-background-color);
         display: block;
       }
-      /* :host,
-      :host::before,
-      :host::after {
-        background-image: url('/assets/asset_fossilwall.svg');
-        background-attachment: fixed;
-        background-size: 22rem;
-      } */
       div {
         position: relative;
         z-index: 2;
         min-height: 13em;
-        border-color: var(--section-background-color);
-        border-width: 1px 0 1px 0;
-        border-style: solid;
+        outline-color: var(--section-background-color);
+        outline-width: 2px;
+        outline-style: solid;
+        display: flex;
+        flex-wrap: nowrap;
+        place-content: center;
+        overflow-x: auto;
+        > a  {
+          display: contents;
+        }
+        picture {
+          position: relative;
+          display: flex;
+          place-items: center;
+          outline: 2px solid var(--section-background-color);
+          > img {
+            max-width: 18em;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
       }
     `,
   template: `
     <header [class]="_section().headerPosition">
       <h2>{{ _section().header }}</h2>
     </header>
-    <div></div>
+    <div>
+      @for (img of _section().images; track img.url) {
+        @if (img.link) {
+          <a [routerLink]="img.link" [attr.aria-label]="img.header || img.text">
+            <ng-container
+              *ngTemplateOutlet="picture; context: { $implicit: img }"
+            ></ng-container>
+          </a>
+        } @else {
+          <ng-container
+            *ngTemplateOutlet="picture; context: { $implicit: img }"
+          ></ng-container>
+        }
+      }
+    </div>
+    <ng-template #picture let-img>
+      <picture>
+        <img [src]="img.url" [alt]="img.text" />
+      </picture>
+    </ng-template>
   `,
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
 })
 export class AppSectionCarouselComponent extends AbstractSectionComponent<CMSSectionTypeCarousel> {
   @HostBinding('class')

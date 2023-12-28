@@ -5,7 +5,7 @@ import { SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
  */
 export interface CMSConfig {
   /** The frontpage sections*/
-  sections: CMSSection[];
+  home: CMSSection[];
   /** Blog articles */
   articles: [];
   /** Footer links */
@@ -78,7 +78,7 @@ export interface CMSSectionTypeCarousel extends CMSSection {
    * The urls are specified as a string in the configuration, but translated to a
    * `SafeResourceUrl` in the `CMSConfigService` for sanitization purposes.
    */
-  images: string[] | SafeResourceUrl[];
+  images: CMSImage[];
 }
 
 /**
@@ -104,7 +104,7 @@ export interface CMSSectionTypeSocial extends CMSSection {
 /**
  */
 export interface CMSImage {
-  position: 'before' | 'after';
+  position?: 'before' | 'after';
   /**
    * The image url to display.
    *
@@ -112,6 +112,9 @@ export interface CMSImage {
    * `SafeResourceUrl` in the `CMSConfigService` for sanitization purposes.
    */
   url: string | SafeResourceUrl;
+  header?: string;
+  text?: string;
+  link: string;
 }
 
 /**
@@ -123,7 +126,9 @@ export interface CMSImage {
  *  - `safeAction` - A function to call when the link is clicked
  */
 export interface CMSLinks {
+  target?: string;
   name: string;
+  isInternal?: boolean;
   /**
    * The url this link points to.
    *

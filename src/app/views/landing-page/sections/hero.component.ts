@@ -1,5 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { Component, HostBinding, Input, computed } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Component, HostBinding, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CMSSection, CMSSectionTypeHero } from 'src/app/app.model';
 import { AbstractSectionComponent } from './abstract-section.component';
 
@@ -21,10 +22,12 @@ import { AbstractSectionComponent } from './abstract-section.component';
       .logo {
         grid-area: 1 / 1 / -1 / -1;
         width: 50%;
+        height: auto;
       }
       .backdrop {
         grid-area: 1 / 1 / -1 / -1;
         width: 100%;
+        height: auto;
       }
       .link-group {
         grid-area: 1 / 1 / -1 / -1;
@@ -38,19 +41,47 @@ import { AbstractSectionComponent } from './abstract-section.component';
   `,
   template: `
     <picture>
-      <img class="backdrop" [src]="_section().backdropImage" />
-      <img class="logo" [src]="_section().logo" />
+      <img
+        class="backdrop"
+        [ngSrc]="_section().backdropImage"
+        width="1024"
+        height="576"
+        [priority]="true"
+        alt="Hero backdrop image"
+      />
+      <img
+        class="logo"
+        [ngSrc]="_section().logo"
+        width="512"
+        height="307"
+        alt="Project logo"
+      />
       <div class="link-group">
         @for (action of _section().actions; track action) {
-        <a [href]="action.url" target="_blank" class="button-link">
-          {{ action.name }}
-        </a>
+          <ng-container
+            *ngTemplateOutlet="anchor; context: { $implicit: action }"
+          ></ng-container>
         }
       </div>
     </picture>
+
+    <ng-template #anchor let-link>
+      @if (link.isInternal) {
+        <a
+          [routerLink]="[link.url]"
+          [target]="link.target"
+          class="button-link"
+          >{{ link.name }}</a
+        >
+      } @else {
+        <a [href]="link.url" [target]="link.target" class="button-link">{{
+          link.name
+        }}</a>
+      }
+    </ng-template>
   `,
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, NgOptimizedImage],
 })
 export class AppSectionHeroComponent extends AbstractSectionComponent<CMSSectionTypeHero> {
   @HostBinding('class')
@@ -62,7 +93,7 @@ export class AppSectionHeroComponent extends AbstractSectionComponent<CMSSection
     // Sanitize section
     const data = structuredClone(section) as CMSSectionTypeHero;
     data.backdropImage = this.sec.bypassSecurityTrustResourceUrl(
-      data.backdropImage as string
+      data.backdropImage as string,
     );
     data.logo = this.sec.bypassSecurityTrustResourceUrl(data.logo as string);
     data.actions = this.service.toSafeList(data.actions);

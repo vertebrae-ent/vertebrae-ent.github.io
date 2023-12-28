@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { AppService } from '../../app.service';
-import { AppSectionHeroComponent } from './sections/hero.component';
 import { AppSectionCarouselComponent } from './sections/carousell.component';
+import { AppSectionHeroComponent } from './sections/hero.component';
 import { AppSectionSocialComponent } from './sections/social.component';
 import { AppSectionTextComponent } from './sections/text.component';
 
@@ -25,9 +25,9 @@ import { AppSectionTextComponent } from './sections/text.component';
 export class AppMainComponent {
   service = inject(AppService);
 
-  sections = computed(() => this.service.config().sections);
+  sections = computed(() => this.service.config().home);
 
   links = computed(() =>
-    this.service.toSafeList(this.service.config().linkList)
+    this.service.toSafeList(this.service.config().linkList),
   );
 }

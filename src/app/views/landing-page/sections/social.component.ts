@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostBinding, Input, computed } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { CMSLinks, CMSSection, CMSSectionTypeSocial } from 'src/app/app.model';
 import { AbstractSectionComponent } from './abstract-section.component';
 
@@ -71,17 +71,21 @@ import { AbstractSectionComponent } from './abstract-section.component';
         <li></li>
         <li></li>
         @for (link of _section().links; track link) {
-        <li>
-          @if (link.url != null) {
-          <a [href]="link.url" target="_blank">
-            <img [src]="link.image" />
-          </a>
-          } @else if (link.action != null) {
-          <a (click)="runAction(link)">
-            <img [src]="link.image" />
-          </a>
-          }
-        </li>
+          <li>
+            @if (link.url != null) {
+              <a
+                [href]="link.url"
+                target="_blank"
+                [attr.aria-label]="link.name"
+              >
+                <img [src]="link.image" [alt]="link.name" />
+              </a>
+            } @else if (link.action != null) {
+              <a (click)="runAction(link)" [attr.aria-label]="link.name">
+                <img [src]="link.image" [alt]="link.name" />
+              </a>
+            }
+          </li>
         }
         <li></li>
         <li></li>

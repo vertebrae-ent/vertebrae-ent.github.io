@@ -36,7 +36,7 @@
   left: 0;
   right: 0;
   z-index: 2;
-  height: 8em;
+  height: 5em;
   &::before,
   &::after {
     background-image: url("/assets/asset_fossilwall.svg");
@@ -65,6 +65,7 @@
     z-index: 11;
     height: 100%;
     width: 100%;
+    top: 0.6em;
     .logo-group {
       padding: 0 var(--text-margin);
     }
@@ -147,7 +148,7 @@
       margin-bottom: 1rem;
       .logo-group {
         max-width: unset;
-        min-height: 4em;
+        min-height: 2.5em;
       }
     }
   }

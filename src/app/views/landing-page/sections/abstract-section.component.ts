@@ -16,7 +16,7 @@ export abstract class AbstractSectionComponent<T extends CMSSection> {
       'section',
       this._section()?.type,
       ...(this._section().class?.split(' ') ?? []),
-    ].join(' ')
+    ].join(' '),
   );
 
   abstract set section(section: CMSSection);
