@@ -130,6 +130,7 @@ export interface CMSImage {
 export interface CMSLinks {
   target?: string;
   name: string;
+  description?: string;
   isInternal?: boolean;
   /**
    * The url this link points to.

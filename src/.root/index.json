@@ -57,26 +57,31 @@
       "links": [
         {
           "name": "Discord",
+          "description": "Discussions and more",
           "url": "https://discord.gg/b7FpnKtsy3",
           "image": "assets/icons/discord.svg"
         },
         {
           "name": "Twitter",
+          "description": "Twitter feed",
           "url": "https://twitter.com/vertebraeent",
           "image": "assets/icons/twitter.svg"
         },
         {
           "name": "Tumblr",
+          "description": "Our tumblr blog",
           "url": "https://vertebrae-entertainment.tumblr.com/",
           "image": "assets/icons/tumblr.svg"
         },
         {
           "name": "YouTube",
+          "description": "Videos and trailers",
           "url": "https://www.youtube.com/@vertebraeent",
           "image": "assets/icons/youtube.svg"
         },
         {
           "name": "Mail",
+          "description": "Sign up for our newsletter!",
           "action": "newsletter",
           "image": "assets/icons/mail.svg"
         }

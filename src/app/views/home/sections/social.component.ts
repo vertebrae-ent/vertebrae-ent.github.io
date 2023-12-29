@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostBinding, Input } from '@angular/core';
 import { CMSLinks, CMSSection, CMSSectionTypeSocial } from 'src/app/app.model';
+import { AppTooltipDirective } from 'src/app/shared/tooltip.directive';
 import { AbstractSectionComponent } from './abstract-section.component';
 
 /**
@@ -20,46 +21,6 @@ import { AbstractSectionComponent } from './abstract-section.component';
         position: relative;
         z-index: 2;
       }
-      .links {
-        flex-wrap: no-wrap;
-      }
-      li {
-        background-image: url('/assets/asset_knuckle.svg');
-        background-repeat: no-repeat;
-        background-size: 110%;
-        background-position: -0.2em 0.2em;
-        width: var(--knuckle-size);
-        height: var(--knuckle-size);
-        padding: 2vw;
-        display: flex;
-        place-content: center;
-        place-items: center;
-        flex: 1;
-        transition-property: all;
-        transition-duration: 0.2s;
-        transition-timing-function: ease-in-out;
-        aspect-ratio: 0.9;
-        @media screen and (min-width: 1024px) {
-          padding: 1.6rem;
-        }
-        &:has(a):hover {
-          filter: invert(1);
-          background-size: 100%;
-          background-position: 0 0.5em;
-          scale: 1.12;
-        }
-        a {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          place-content: center;
-          place-items: center;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
     }
   `,
   template: `
@@ -67,11 +28,11 @@ import { AbstractSectionComponent } from './abstract-section.component';
       <h2>{{ _section().header }}</h2>
     </header>
     <div>
-      <ul class="links">
+      <ul class="knuckles links">
         <li></li>
         <li></li>
         @for (link of _section().links; track link) {
-          <li>
+          <li [tooltip]="link.description">
             @if (link.url != null) {
               <a
                 [href]="link.url"
@@ -93,7 +54,7 @@ import { AbstractSectionComponent } from './abstract-section.component';
     </div>
   `,
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AppTooltipDirective],
 })
 export class AppSectionSocialComponent extends AbstractSectionComponent<CMSSectionTypeSocial> {
   @HostBinding('class')

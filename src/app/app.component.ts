@@ -7,12 +7,15 @@ import {
   HostListener,
   OnInit,
   ViewChild,
+  computed,
   inject,
   signal,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CMSLinks, CMSSectionTypeSocial } from './app.model';
 import { AppService } from './app.service';
 import { AppLinkListComponent } from './shared/link-list.component';
+import { AppTooltipDirective } from './shared/tooltip.directive';
 
 /**
  * The main application component.
@@ -28,7 +31,13 @@ import { AppLinkListComponent } from './shared/link-list.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [CommonModule, RouterModule, HttpClientModule, AppLinkListComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    HttpClientModule,
+    AppLinkListComponent,
+    AppTooltipDirective,
+  ],
   providers: [AppService],
 })
 export class AppComponent implements OnInit {
@@ -39,6 +48,20 @@ export class AppComponent implements OnInit {
   @ViewChild('nagModal') modal!: ElementRef<HTMLDialogElement>;
   userRequestedNag = signal(false);
 
+  openedAt = -1;
+  social = computed(() => {
+    if (!Array.isArray(this.service.config()?.home)) {
+      return {} as CMSSectionTypeSocial;
+    }
+    const config = structuredClone(
+      this.service
+        .config()
+        .home.filter((s) => s.type === 'social')[0] as CMSSectionTypeSocial,
+    );
+    config.links = this.service.toSafeList(config.links);
+    return config;
+  });
+
   /**
    * Component initializer.
    */
@@ -46,6 +69,34 @@ export class AppComponent implements OnInit {
     this.service.showNewsLetterDialog$.subscribe((val) =>
       this.openNagDialog(undefined, true),
     );
+  }
+
+  runAction(link: CMSLinks) {
+    try {
+      link.safeAction();
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+
+  /**
+   * Close the dialog if the user clicks outside of it.
+   * @param event
+   */
+  @HostListener('click', ['$event'])
+  onClick(event: MouseEvent) {
+    const now = performance.now(); // Must check the time, because the click event is fired before the dialog is opened
+    if (this.modal.nativeElement.open && now - this.openedAt > 100) {
+      var rect = this.modal.nativeElement.getBoundingClientRect();
+      var isInDialog =
+        rect.top <= event.clientY &&
+        event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX &&
+        event.clientX <= rect.left + rect.width;
+      if (!isInDialog) {
+        this.closeNagDialog();
+      }
+    }
   }
 
   /**
@@ -64,6 +115,7 @@ export class AppComponent implements OnInit {
       // Show nag-dialog
       if (event != null) event.preventDefault();
       this.modal.nativeElement.showModal();
+      this.openedAt = performance.now();
       return true;
     }
     return false;
@@ -71,10 +123,8 @@ export class AppComponent implements OnInit {
 
   /**
    * Close the newsletter nag dialog.
-   *
-   * @param $event
    */
-  closeNagDialog($event: Event) {
+  closeNagDialog() {
     localStorage.setItem('newsNagDone', 'true');
     this.modal.nativeElement.close();
     console.log('Canceled!');

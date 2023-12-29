@@ -1,11 +1,22 @@
 /**
  * This file defines how a dialog is styled
  */
-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px) grayscale(0.8);
+dialog {
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    transition: backdrop-filter 0.3s ease-in-out;
+    backdrop-filter: blur(4px) grayscale(0.2);
+  }
 }
 
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 .nag-modal {
   background-image: url("/assets/asset_fossilwall.svg");
   background-color: var(--body-background-color);
@@ -16,6 +27,7 @@ dialog::backdrop {
   box-shadow:
     0 0 6px black,
     0px 10px 10px black;
+  animation: scaleIn 0.3s ease-in-out forwards;
   header {
     display: flex;
     overflow: hidden;

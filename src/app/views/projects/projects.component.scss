@@ -1,7 +1,7 @@
 :host {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  min-height: calc(100vh - 11rem);
+  min-height: calc(100dvh - 11rem);
   padding-top: 2em;
   margin-top: 4em;
   margin-bottom: 6rem;
@@ -9,7 +9,7 @@
   position: relative;
   z-index: -2; // If not, the before psueudo element of time will be hidden
   @media screen and (max-width: 980px) {
-    min-height: calc(100vh - 18em);
+    min-height: calc(100dvh - 18em);
   }
   color: var(--body-text-color);
 

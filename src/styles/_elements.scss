@@ -145,12 +145,54 @@ body {
     aspect-ratio: 5;
   }
 }
+.knuckles {
+  flex-wrap: no-wrap;
+  li {
+    background-image: url("/assets/asset_knuckle.svg");
+    background-repeat: no-repeat;
+    background-size: 110%;
+    background-position: -0.2em 0.2em;
+    min-width: var(--knuckle-size);
+    width: var(--knuckle-size);
+    min-height: var(--knuckle-size);
+    height: var(--knuckle-size);
+    padding: 2vw;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    flex: 1;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    aspect-ratio: 0.9;
+    @media screen and (min-width: 1024px) {
+      padding: 1.6rem;
+    }
+    &:has(a):hover {
+      filter: invert(1);
+      background-size: 100%;
+      background-position: 0 0.5em;
+      scale: 1.12;
+    }
+    a {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      place-content: center;
+      place-items: center;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
 
 .logo-group {
   display: flex;
   flex-wrap: nowrap;
   flex: 1;
-  max-height: clamp(3em, 17vw, 6em);
+  max-height: clamp(3em, 17vw, 4.5em);
   aspect-ratio: 5;
   img {
     height: 100%;
@@ -181,5 +223,40 @@ body {
       width: 100%;
       object-fit: cover;
     }
+  }
+}
+
+#tooltip {
+  position: absolute;
+  z-index: 30;
+  // display: none;
+  color: white;
+  background-color: black;
+  border-radius: 8px;
+  padding: 1rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  // Add a pseudo-element for the triangle
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%; // Center it horizontally
+    transform: translateX(-50%); // Ensure it's centered
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent; // Size of the triangle
+    border-right: 10px solid transparent; // Size of the triangle
+  }
+  &.top::after {
+    border-top: 10px solid black; // Color and direction of the triangle
+    bottom: -10px; // Position it at the bottom of the tooltip
+  }
+  &.bottom::after {
+    top: -10px; // Position it at the bottom of the tooltip
+    border-bottom: 10px solid black; // Color and direction of the triangle
+  }
+  &.show {
+    opacity: 1;
   }
 }
