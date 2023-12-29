@@ -25,7 +25,10 @@ bootstrapApplication(AppComponent, {
       // The about page is available via the `/about` route
       { path: 'about', component: AppAboutUsComponent },
       // The projects page is available via the `/projects` route
+      { path: 'projects/:id', component: AppProjectsComponent },
       { path: 'projects', component: AppProjectsComponent },
+      // Catch all route redirecting to home page
+      { path: '**', redirectTo: '' },
     ]),
   ],
 }).catch((err) => console.error(err));

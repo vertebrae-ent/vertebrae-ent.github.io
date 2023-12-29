@@ -42,7 +42,13 @@
     action="/"
     (submit)="closeNagDialog($event)"
   >
-    <input type="email" name="email" placeholder="my.email@address.com" />
+    <input
+      type="email"
+      name="email"
+      placeholder="my.email@address.com"
+      autofocus="on"
+      autocomplete="on"
+    />
     <button class="button-link" type="submit">Get me in there</button>
   </form>
 </dialog>

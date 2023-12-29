@@ -1,0 +1,78 @@
+:host {
+  display: block;
+  padding-top: 2em;
+  margin-top: 4em;
+  margin-bottom: 6rem;
+  background-color: var(--grey-color);
+  position: relative;
+  z-index: -2; // If not, the before psueudo element of time will be hidden
+  @media screen and (max-width: 980px) {
+    margin-bottom: 18rem;
+  }
+  color: var(--body-text-color);
+
+  p {
+    margin: 2rem var(--text-margin);
+  }
+
+  .tabs .selected {
+    display: flex;
+    background-color: var(--body-background-color);
+  }
+
+  .timeline {
+    margin: 0 var(--text-margin) 5rem var(--text-margin);
+    article {
+      display: grid;
+      color: var(--section-text-color);
+      margin: 1rem 0;
+      gap: 1rem;
+      grid-template-columns: 5em minmax(0, 1fr);
+      time {
+        border-radius: 50%;
+        background-color: var(--section-background-color);
+        width: 5em;
+        height: 5em;
+        display: flex;
+        place-content: center;
+        place-items: center;
+        position: relative;
+        border: 4px solid var(--body-background-color);
+        &::before {
+          content: "";
+          position: absolute;
+          right: 2.5em;
+          left: -3rem;
+          top: -4px;
+          bottom: -4px;
+          background-color: var(--body-background-color);
+          z-index: -1;
+        }
+      }
+      div {
+        background-color: var(--section-background-color);
+        padding: 0 1em;
+      }
+    }
+
+    ::ng-deep {
+      img {
+        max-height: 8em;
+      }
+      p:has(img) {
+        float: left;
+        img {
+          width: 8em;
+          margin-right: 1em;
+        }
+      }
+      ul:has(li > img) {
+        list-style: none;
+        padding-left: 0;
+        display: flex;
+        overflow: auto;
+        clear: both;
+      }
+    }
+  }
+}

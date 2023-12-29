@@ -6,8 +6,10 @@ import { SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 export interface CMSConfig {
   /** The frontpage sections*/
   home: CMSSection[];
+  /** About page */
+  about: {};
   /** Blog articles */
-  articles: [];
+  projects: CMSProjects[];
   /** Footer links */
   linkList: CMSLinks[];
 }
@@ -145,4 +147,8 @@ export interface CMSLinks {
    * `SafeResourceUrl` in the `CMSConfigService` for sanitization purposes.
    */
   image?: string | SafeResourceUrl;
+}
+
+export interface CMSProjects extends CMSImage {
+  timeline: string[];
 }

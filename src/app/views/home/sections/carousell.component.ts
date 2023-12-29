@@ -17,38 +17,14 @@ import { AbstractSectionComponent } from './abstract-section.component';
         --color: var(--body-background-color);
         display: block;
       }
-      div {
-        position: relative;
-        z-index: 2;
-        min-height: 13em;
-        outline-color: var(--section-background-color);
-        outline-width: 2px;
-        outline-style: solid;
-        display: flex;
-        flex-wrap: nowrap;
-        place-content: center;
-        overflow-x: auto;
-        > a  {
-          display: contents;
-        }
-        picture {
-          position: relative;
-          display: flex;
-          place-items: center;
-          outline: 2px solid var(--section-background-color);
-          > img {
-            max-width: 18em;
-            width: 100%;
-            object-fit: cover;
-          }
-        }
-      }
     `,
   template: `
-    <header [class]="_section().headerPosition">
-      <h2>{{ _section().header }}</h2>
-    </header>
-    <div>
+    @if (_section().header) {
+      <header [class]="_section().headerPosition">
+        <h2>{{ _section().header }}</h2>
+      </header>
+    }
+    <div class="tabs">
       @for (img of _section().images; track img.url) {
         @if (img.link) {
           <a [routerLink]="img.link" [attr.aria-label]="img.header || img.text">

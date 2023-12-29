@@ -3,7 +3,7 @@
  */
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(5px) grayscale(0.8);
 }
 
 .nag-modal {
@@ -13,7 +13,9 @@ dialog::backdrop {
   border: 2px solid var(--grey-color);
   padding: 0;
   max-width: 1024px;
-  box-shadow: 0 0 6px black, 0px 10px 10px black;
+  box-shadow:
+    0 0 6px black,
+    0px 10px 10px black;
   header {
     display: flex;
     overflow: hidden;

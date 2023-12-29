@@ -1,19 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, computed, inject } from '@angular/core';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-about-us',
-  template: ` <h1>About Us</h1> `,
-  styles: `
-  :host {
-    display: block;
-    margin-top: 6em;
-    margin-bottom: 6rem;
-    @media screen and (max-width: 980px) {
-      margin-bottom: 18rem;
-    }
-  }
-`,
+  templateUrl: './about-us.component.html',
+  styleUrl: './about-us.component.scss',
   standalone: true,
   imports: [],
 })
-export class AppAboutUsComponent {}
+export class AppAboutUsComponent implements OnInit {
+  service = inject(AppService);
+  config = computed(() => this.service.config().about);
+
+  ngOnInit() {}
+}

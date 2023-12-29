@@ -1,0 +1,31 @@
+<h1>Projects</h1>
+
+<!-- Project tabs -->
+<div class="tabs">
+  @for (img of config(); track img.url) {
+    <a
+      [routerLink]="img.link"
+      [attr.aria-label]="img.header || img.text"
+      [ngClass]="{ selected: selected() === img }"
+    >
+      <picture>
+        <img [src]="img.url" [alt]="img.text" />
+      </picture>
+    </a>
+  }
+</div>
+
+<section class="timeline">
+  @for (post of timeline(); track post.date) {
+    @defer {
+      <article>
+        <span>
+          <time>{{ post.date | date: "yyyy-MM" }}</time>
+        </span>
+        <div [innerHTML]="post.content | async"></div>
+      </article>
+    }
+  }
+</section>
+
+<app-section-social [section]="social()"></app-section-social>

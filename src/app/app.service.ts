@@ -7,7 +7,8 @@ import {
   signal,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { firstValueFrom } from 'rxjs';
+import { marked } from 'marked';
+import { firstValueFrom, map } from 'rxjs';
 import { CMSConfig, CMSLinks } from './app.model';
 
 /**
@@ -74,5 +75,17 @@ export class AppService {
   showNewsLetterDialog() {
     localStorage.removeItem('newsNagDone');
     this.showNewsLetterDialog$.emit('user-requested');
+  }
+
+  /**
+   * Load one post from the `./src/.root/_posts` folder, convert it from markdown to html
+   * and return the processed html.
+   *
+   * @param url The url to the markdown document to load
+   */
+  loadPost(url: string) {
+    return this.http
+      .get(`/_posts/${url}`, { responseType: 'text' })
+      .pipe(map((post: string) => marked(post) as string));
   }
 }

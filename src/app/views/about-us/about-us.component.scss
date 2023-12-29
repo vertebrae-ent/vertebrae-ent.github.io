@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  margin-top: 6em;
+  margin-bottom: 6rem;
+  color: var(--body-text-color);
+  @media screen and (max-width: 980px) {
+    margin-bottom: 18rem;
+  }
+
+  p {
+    margin: 1rem var(--text-margin);
+  }
+}

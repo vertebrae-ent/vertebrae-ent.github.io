@@ -11,12 +11,7 @@ npm start
 
 This will install the dependencies and start the project locally. You may view the result in `http://localhost:4200`.
 
-In order to publish this to github pages, run:
-
-```
-npm run build --prod --base-href "https://vertebrae-ent.github.io/"
-npx angular-cli-ghpages --dir=dist/vertebrae
-```
+If you do make changes, remember that the website will be published automatically when code is pushed to the `main` branch. This is done using the [`Build and Deploy`](./.github/workflows/build-deploy.yml) Github Action included in this repo.
 
 ## Micro Content Management System - Introduction
 

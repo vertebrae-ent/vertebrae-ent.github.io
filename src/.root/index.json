@@ -24,12 +24,12 @@
         {
           "url": "assets/projects/LS_Final.webp",
           "header": "Liquid State",
-          "link": "/projects"
+          "link": "/projects/liquid-state"
         },
         {
           "url": "assets/concept/logo_Fangst_full.svg",
           "header": "Fangst",
-          "link": "/projects"
+          "link": "/projects/fangst"
         }
       ]
     },
@@ -79,7 +79,22 @@
     }
   ],
   "about": {},
-  "projects": {},
+  "projects": [
+    {
+      "url": "assets/projects/LS_Final.webp",
+      "header": "Liquid State",
+      "link": "/projects/liquid-state",
+      "timeline": []
+    },
+    {
+      "url": "assets/concept/logo_Fangst_full.svg",
+      "header": "Fangst",
+      "link": "/projects/fangst",
+      "timeline": [
+        "projects/240101.md"
+      ]
+    }
+  ],
   "linkList": [
     {
       "name": "About us",
