@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostBinding, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CMSSection, CMSSectionTypeText } from 'src/app/app.model';
 import { AbstractSectionComponent } from './abstract-section.component';
 
@@ -22,25 +23,34 @@ import { AbstractSectionComponent } from './abstract-section.component';
     }
     .content {
       display: grid;
-      grid-template-columns: 1fr 21rem;
-      @media screen and (max-width: 640px) {
-        grid-template-columns: 1fr;
-        img {
-          max-height: 10em;
-          margin-left: var(--text-margin);
-        }
-      }
-      div {
-        padding: var(--text-margin);
+      grid-template-columns: 1fr 19em;
+      > div {
+        padding: 0 var(--text-margin);
         position: relative;
         white-space: pre-line;
         background: var(--body-text-color);
         flex: 1;
+        position: relative;
+        z-index: 2;
+        p {
+          margin: var(--text-margin) 0 0 0;
+        }
+        .actions {
+          text-align: right;
+          margin-bottom: var(--text-margin);
+        }
       }
       img {
         margin-right: var(--text-margin);
         transform: translateX(-2px);
         min-height: 100%;
+      }
+      @media screen and (max-width: 640px) {
+        grid-template-columns: 1fr;
+        img {
+          max-height: 10em;
+          transform: translateX(var(--text-margin));
+        }
       }
     }
   `,
@@ -56,7 +66,19 @@ import { AbstractSectionComponent } from './abstract-section.component';
           height="130"
         />
       }
-      <div>{{ _section().text }}</div>
+      <div>
+        <p>{{ _section().text }}</p>
+        <div class="actions">
+          @for (action of _section().actions; track action.url) {
+            <a
+              [routerLink]="[action.url]"
+              [target]="action.target"
+              class="button-link"
+              >{{ action.name }}</a
+            >
+          }
+        </div>
+      </div>
       @if (_section().image != null && _section().image.position === 'after') {
         <img
           [src]="_section().image.url"
@@ -67,7 +89,7 @@ import { AbstractSectionComponent } from './abstract-section.component';
     </div>
   `,
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
 })
 export class AppSectionTextComponent extends AbstractSectionComponent<CMSSectionTypeText> {
   @HostBinding('class')

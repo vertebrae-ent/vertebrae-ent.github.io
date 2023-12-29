@@ -38,7 +38,12 @@
       "header": "We are Vertebrae Entertainment",
       "text": "People kept telling us that if we wanted to see people like us in games, we should just make them ourselves. \n\nSo we did!",
       "class": "toothrack top reverse",
-      "actions": [],
+      "actions": [
+        {
+          "name": "About us",
+          "url": "/about"
+        }
+      ],
       "image": {
         "position": "after",
         "url": "assets/asset_slogan.svg"
