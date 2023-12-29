@@ -1,5 +1,7 @@
 :host {
-  display: block;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  height: calc(100vh - 11rem);
   padding-top: 2em;
   margin-top: 4em;
   margin-bottom: 6rem;
@@ -22,6 +24,7 @@
 
   .timeline {
     margin: 0 var(--text-margin) 5rem var(--text-margin);
+    min-height: calc(100vh - 18.34em - 33rem);
     article {
       display: grid;
       color: var(--section-text-color);
