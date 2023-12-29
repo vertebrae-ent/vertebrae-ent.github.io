@@ -18,15 +18,31 @@
 </div>
 
 <section class="timeline">
-  @for (post of timeline(); track post.date) {
-    @defer {
+  @if (selected() != null) {
+    @for (post of timeline(); track post.date) {
+      @defer {
+        <article>
+          <span>
+            <time>{{ post.date | date: "yyyy-MM" }}</time>
+          </span>
+          <div [innerHTML]="post.content | async"></div>
+        </article>
+      }
+    } @empty {
       <article>
         <span>
-          <time>{{ post.date | date: "yyyy-MM" }}</time>
+          <time><img src="/assets/logo_spinecoil.svg" /></time>
         </span>
-        <div [innerHTML]="post.content | async"></div>
+        <div><p>There are no posts for this project yet.</p></div>
       </article>
     }
+  } @else {
+    <article>
+      <span>
+        <time><img src="/assets/logo_spinecoil.svg" /></time>
+      </span>
+      <div><p>Choose a project to view the timeline.</p></div>
+    </article>
   }
 </section>
 
