@@ -1,0 +1,126 @@
+{
+  "home": [
+    {
+      "type": "hero",
+      "backdropImage": "assets/concept/fangstconcept4.webp",
+      "logo": "assets/concept/logo_Fangst_full.svg",
+      "actions": [
+        {
+          "name": "Learn more",
+          "url": "/projects/fangst"
+        },
+        {
+          "name": "Wishlist",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "type": "carousel",
+      "header": "Our projects",
+      "headerPosition": "right",
+      "class": "toothrack top",
+      "images": [
+        {
+          "url": "assets/projects/LS_Final.webp",
+          "header": "Liquid State",
+          "link": "/projects/liquid-state"
+        },
+        {
+          "url": "assets/concept/logo_Fangst_full.svg",
+          "header": "Fangst",
+          "link": "/projects/fangst"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "header": "We are Vertebrae Entertainment",
+      "text": "People kept telling us that if we wanted to see people like us in games, we should just make them ourselves. \n\nSo we did!",
+      "class": "toothrack top reverse",
+      "actions": [
+        {
+          "name": "About us",
+          "url": "/about"
+        }
+      ],
+      "image": {
+        "position": "after",
+        "url": "assets/asset_slogan.svg"
+      }
+    },
+    {
+      "type": "social",
+      "header": "Get in touch",
+      "headerPosition": "right",
+      "class": "toothrack top",
+      "links": [
+        {
+          "name": "Discord",
+          "description": "Discussions and more",
+          "url": "https://discord.gg/b7FpnKtsy3",
+          "image": "assets/icons/discord.svg"
+        },
+        {
+          "name": "Twitter",
+          "description": "Twitter feed",
+          "url": "https://twitter.com/vertebraeent",
+          "image": "assets/icons/twitter.svg"
+        },
+        {
+          "name": "Tumblr",
+          "description": "Our tumblr blog",
+          "url": "https://vertebrae-entertainment.tumblr.com/",
+          "image": "assets/icons/tumblr.svg"
+        },
+        {
+          "name": "YouTube",
+          "description": "Videos and trailers",
+          "url": "https://www.youtube.com/@vertebraeent",
+          "image": "assets/icons/youtube.svg"
+        },
+        {
+          "name": "Mail",
+          "description": "Sign up for our newsletter!",
+          "action": "newsletter",
+          "image": "assets/icons/mail.svg"
+        }
+      ]
+    }
+  ],
+  "about": {},
+  "projects": [
+    {
+      "url": "assets/projects/LS_Final.webp",
+      "header": "Liquid State",
+      "link": "/projects/liquid-state",
+      "timeline": []
+    },
+    {
+      "url": "assets/concept/logo_Fangst_full.svg",
+      "header": "Fangst",
+      "link": "/projects/fangst",
+      "timeline": [
+        "projects/240101.md"
+      ]
+    }
+  ],
+  "linkList": [
+    {
+      "name": "About us",
+      "url": "/about"
+    },
+    {
+      "name": "Our projects",
+      "url": "/projects"
+    },
+    {
+      "name": "Devlog",
+      "url": "https://vertebrae-entertainment.tumblr.com/"
+    },
+    {
+      "name": "Presskit",
+      "url": ""
+    }
+  ]
+}

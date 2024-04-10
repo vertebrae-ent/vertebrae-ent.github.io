@@ -1,0 +1,73 @@
+<header class="toothrack bottom">
+  <section class="page-width">
+    <a class="group" [routerLink]="['/']" aria-label="To homepage">
+      <hgroup class="logo-group">
+        <img src="assets/logo_spinecoil.svg" alt="Company logo" />
+        <img src="assets/logo_vertebraetext.svg" alt="Company logo" />
+      </hgroup>
+    </a>
+    <nav class="menu">
+      <img src="assets/asset_menutooth.svg" alt="Menu icon" />
+      <ul class="knuckles links">
+        @for (link of social()?.links; track link) {
+          <li [tooltip]="link.description" [tooltipPos]="'bottom'">
+            @if (link.url != null) {
+              <a
+                [href]="link.url"
+                target="_blank"
+                [attr.aria-label]="link.name"
+              >
+                <img [src]="link.image" [alt]="link.name" />
+              </a>
+            } @else if (link.action != null) {
+              <a (click)="runAction(link)" [attr.aria-label]="link.name">
+                <img [src]="link.image" [alt]="link.name" />
+              </a>
+            }
+          </li>
+        }
+      </ul>
+    </nav>
+  </section>
+</header>
+
+<main class="page-width">
+  <router-outlet></router-outlet>
+</main>
+
+<footer>
+  <app-linklist class="page-width">
+    <a class="logo-group" [routerLink]="['/']" aria-label="To homepage">
+      <img src="assets/logo_spinecoil.svg" alt="Company logo" />
+      <img src="assets/logo_vertebraetext.svg" alt="Company logo" />
+    </a>
+  </app-linklist>
+</footer>
+
+<!-- Newsletter nag dialog -->
+<dialog #nagModal class="nag-modal" (cancel)="closeNagDialog()">
+  <header>
+    <div>
+      @if (userRequestedNag()) {
+        <h1>Sign up to our newsletter!</h1>
+      } @else {
+        <h1>Hold up!</h1>
+      }
+    </div>
+    <button type="reset" (click)="closeNagDialog()">X</button>
+  </header>
+  <p>
+    Sign up to our newsletter today and stay up to date on the development of
+    our games as well as a few other suproses like a digital artbook and more!
+  </p>
+  <form method="dialog" method="get" action="/" (submit)="closeNagDialog()">
+    <input
+      type="email"
+      name="email"
+      placeholder="my.email@address.com"
+      autofocus="on"
+      autocomplete="on"
+    />
+    <button class="button-link" type="submit">Get me in there</button>
+  </form>
+</dialog>
