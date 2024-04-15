@@ -88,7 +88,24 @@
       ]
     }
   ],
-  "about": {},
+  "about": {
+    "header": "We are Vertebrae Entertainment",
+    "description": "People kept telling us that if we wanted to see people like us in games, we should just make them ourselves. \n\nSo we did!",
+    "people": [
+      {
+        "name": "Hauk",
+        "role": "Game Designer",
+        "image": "assets/people/hauk.webp",
+        "description": ""
+      },
+      {
+        "name": "Åge",
+        "role": "Game Programmer",
+        "image": "assets/people/Aage.webp",
+        "description": ""
+      }
+    ]
+  },
   "projects": [
     {
       "url": "assets/projects/LS_Final.webp",

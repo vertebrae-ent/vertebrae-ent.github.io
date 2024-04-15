@@ -58,9 +58,6 @@
     }
 
     ::ng-deep {
-      img {
-        max-height: 8em;
-      }
       p:has(img) {
         float: left;
         img {
@@ -68,12 +65,35 @@
           margin-right: 1em;
         }
       }
-      ul:has(li > img) {
-        list-style: none;
-        padding-left: 0;
-        display: flex;
-        overflow: auto;
+      .img-carousel {
         clear: both;
+      }
+    }
+  }
+  dialog {
+    section {
+      display: flex;
+      place-content: center;
+      position: relative;
+      .prev,
+      .next {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        padding: 0.5em;
+        cursor: pointer;
+        width: 2em;
+        display: flex;
+        place-content: center;
+        > img {
+          width: 2em;
+        }
+      }
+      .prev {
+        left: 0;
+      }
+      .next {
+        right: 0;
       }
     }
   }

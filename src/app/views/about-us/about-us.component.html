@@ -1,3 +1,24 @@
 <header>
   <h1>About Us</h1>
 </header>
+
+<section>
+  <div>
+    <div class="content">
+      @if (selectedPerson()) {
+        <p>{{ selectedPerson()!.name }}</p>
+        <p>{{ selectedPerson()!.role }}</p>
+        <p [innerHTML]="selectedPerson()!.description"></p>
+      } @else {
+        <p [innerHTML]="config().description"></p>
+      }
+    </div>
+    <aside>
+      @for (person of config().people; track person.name) {
+        <div class="photo" (click)="selectPerson(person)">
+          <img src="{{ person.image }}" alt="{{ person.name }}" />
+        </div>
+      }
+    </aside>
+  </div>
+</section>

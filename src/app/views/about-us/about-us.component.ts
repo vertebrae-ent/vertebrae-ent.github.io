@@ -1,4 +1,5 @@
-import { Component, OnInit, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { CMSPeople } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
 
 @Component({
@@ -8,9 +9,16 @@ import { AppService } from 'src/app/app.service';
   standalone: true,
   imports: [],
 })
-export class AppAboutUsComponent implements OnInit {
+export class AppAboutUsComponent {
   service = inject(AppService);
   config = computed(() => this.service.config().about);
+  selectedPerson = signal<CMSPeople | undefined>(undefined);
 
-  ngOnInit() {}
+  selectPerson(person: CMSPeople) {
+    if (this.selectedPerson() === person) {
+      this.selectedPerson.set(undefined);
+    } else {
+      this.selectedPerson.set(person);
+    }
+  }
 }

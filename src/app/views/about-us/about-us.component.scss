@@ -1,7 +1,7 @@
 :host {
   display: grid;
   grid-template-rows: auto 1fr;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr;
   min-height: calc(100vh - 11rem);
   padding-top: 2em;
   margin-top: 4em;
@@ -14,7 +14,22 @@
   }
   color: var(--body-text-color);
 
-  p {
-    margin: 1rem var(--text-margin);
+  section {
+    > div {
+      display: grid;
+      grid-template-columns: 1fr 15em;
+      grid-template-rows: auto;
+      gap: 1em;
+      > div {
+        padding: 0 var(--text-margin);
+        position: relative;
+        white-space: pre-line;
+        background: var(--body-text-color);
+        color: var(--grey-color);
+        p {
+          white-space: pre-wrap;
+        }
+      }
+    }
   }
 }

@@ -27,6 +27,28 @@ export class AppService {
     firstValueFrom(this.http.get<CMSConfig>('/index.json')).then((config) =>
       this.config.set(config),
     );
+
+    let renderer = new marked.Renderer();
+    let originalListRenderer = renderer.list;
+    renderer.list = function (text, task, checked) {
+      if (/<img.*src=.*>/.test(text)) {
+        return `
+        <div class="img-carousel">
+          <span class="prev">
+            <img class="btn" src="/assets/icons/back.svg" alt="Previous image" />
+          </span>
+          ${originalListRenderer.call(this, text, task, checked)}
+          <span class="next">
+            <img class="btn" src="/assets/icons/next.svg" alt="Next image" />
+          </span>
+        </div>`;
+      } else {
+        return originalListRenderer.call(this, text, task, checked);
+      }
+    };
+
+    // Set the options to use the customized renderer
+    marked.setOptions({ renderer });
   }
 
   /**

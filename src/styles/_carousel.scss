@@ -1,0 +1,58 @@
+.img-carousel {
+  --carousel-margin: 6.5em;
+  position: relative;
+  margin: 0 -1em;
+  .prev,
+  .next {
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: var(--carousel-margin);
+    place-content: center;
+    user-select: none;
+    > img {
+      pointer-events: none;
+      width: 2em;
+    }
+  }
+  .prev {
+    left: 0;
+    background: linear-gradient(
+      to right,
+      var(--article-background-color) 10%,
+      transparent
+    );
+  }
+  .next {
+    right: 0;
+    background: linear-gradient(
+      to left,
+      var(--article-background-color) 10%,
+      transparent
+    );
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    overflow: auto;
+    gap: 0.5em;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin: 0;
+    li {
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      &:first-child {
+        margin-left: var(--carousel-margin);
+      }
+      &:last-child {
+        margin-right: var(--carousel-margin);
+      }
+    }
+  }
+  img {
+    max-height: 22em;
+  }
+}

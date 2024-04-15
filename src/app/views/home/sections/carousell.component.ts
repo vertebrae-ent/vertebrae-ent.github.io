@@ -13,11 +13,11 @@ import { AbstractSectionComponent } from './abstract-section.component';
 @Component({
   selector: 'app-section-carousel',
   styles: `
-      :host {
-        --color: var(--body-background-color);
-        display: block;
-      }
-    `,
+    :host {
+      --color: var(--body-background-color);
+      display: block;
+    }
+  `,
   template: `
     @if (_section().header) {
       <header [class]="_section().headerPosition">
@@ -28,22 +28,13 @@ import { AbstractSectionComponent } from './abstract-section.component';
       @for (img of _section().images; track img.url) {
         @if (img.link) {
           <a [routerLink]="img.link" [attr.aria-label]="img.header || img.text">
-            <ng-container
-              *ngTemplateOutlet="picture; context: { $implicit: img }"
-            ></ng-container>
+            <picture><img [src]="img.url" [alt]="img.text" /></picture>
           </a>
         } @else {
-          <ng-container
-            *ngTemplateOutlet="picture; context: { $implicit: img }"
-          ></ng-container>
+          <picture><img [src]="img.url" [alt]="img.text" /></picture>
         }
       }
     </div>
-    <ng-template #picture let-img>
-      <picture>
-        <img [src]="img.url" [alt]="img.text" />
-      </picture>
-    </ng-template>
   `,
   standalone: true,
   imports: [CommonModule, RouterModule],

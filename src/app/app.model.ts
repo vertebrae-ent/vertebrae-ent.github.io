@@ -7,7 +7,7 @@ export interface CMSConfig {
   /** The frontpage sections*/
   home: CMSSection[];
   /** About page */
-  about: {};
+  about: CMSAbout;
   /** Blog articles */
   projects: CMSProjects[];
   /** Footer links */
@@ -152,4 +152,18 @@ export interface CMSLinks {
 
 export interface CMSProjects extends CMSImage {
   timeline: string[];
+  _parsed?: string;
+}
+
+export interface CMSAbout {
+  header: string;
+  description: string;
+  people: CMSPeople[];
+}
+
+export interface CMSPeople {
+  name: string;
+  role: string;
+  image: string;
+  description: string;
 }

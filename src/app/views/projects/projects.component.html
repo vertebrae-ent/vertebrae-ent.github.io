@@ -20,13 +20,18 @@
 <section class="timeline">
   @if (selected() != null) {
     @for (post of timeline(); track post.date) {
-      @defer {
-        <article>
+      @defer (on viewport) {
+        <article
+          (mouseenter)="watchPost($event)"
+          (mouseleave)="unwatchPost($event)"
+        >
           <span>
             <time>{{ post.date | date: "yyyy-MM" }}</time>
           </span>
           <div [innerHTML]="post.content | async"></div>
         </article>
+      } @placeholder {
+        <article></article>
       }
     } @empty {
       <article>
@@ -45,5 +50,17 @@
     </article>
   }
 </section>
+
+<dialog #largeImage>
+  <section>
+    <!-- <span class="prev">
+      <img class="btn" src="/assets/icons/back.svg" alt="Previous image" />
+    </span> -->
+    <img [attr.src]="selectedImage()?.src" />
+    <!-- <span class="next">
+      <img class="btn" src="/assets/icons/next.svg" alt="Next image" />
+    </span> -->
+  </section>
+</dialog>
 
 <app-section-social [section]="social()"></app-section-social>
