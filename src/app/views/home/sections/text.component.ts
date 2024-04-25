@@ -42,7 +42,7 @@ import { AbstractSectionComponent } from './abstract-section.component';
       }
       img {
         margin-right: var(--text-margin);
-        transform: translateX(-2px);
+        transform: translateX(-3px);
         min-height: 100%;
       }
       @media screen and (max-width: 640px) {

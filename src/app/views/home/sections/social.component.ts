@@ -29,7 +29,7 @@ import { AbstractSectionComponent } from './abstract-section.component';
     </header>
     <div>
       <ul class="knuckles links">
-        <li></li>
+        <li class="filler"></li>
         <li></li>
         @for (link of _section().links; track link) {
           <li [tooltip]="link.description">
@@ -49,7 +49,7 @@ import { AbstractSectionComponent } from './abstract-section.component';
           </li>
         }
         <li></li>
-        <li></li>
+        <li class="filler"></li>
       </ul>
     </div>
   `,

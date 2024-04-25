@@ -29,7 +29,7 @@
       top: 0;
       transform-origin: right center;
       transform: rotateY(90deg);
-      transition-duration: 0.2s;
+      transition-duration: 0.1s;
       transition-timing-function: ease-in-out;
       transition-property: opacity, transform;
       li {
@@ -41,6 +41,10 @@
         &:hover {
           filter: invert(0);
           z-index: 5;
+          img {
+            translate: 0 1px;
+            scale: 1.12;
+          }
         }
       }
     }
