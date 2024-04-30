@@ -40,12 +40,12 @@ Below is a small documentation of the json structure we support.
 
 ## [`home`](./src/app/views/home/README.md) Overview
 
-The configuration for the main landing-page - the [`/`](<(https://vertebrae-ent.github.io/)>) route.
+The configuration for the main landing-page - the [`/`](https://vertebrae-ent.github.io/)>) rou.
 This part of the configuration contains sections of content. Each object in the array covers properties for one section of the landing page. There are also some common properties for all content-types, but also some specific to a particular type. Let's go over the common ones first:
 
 Each section must have a `type`. These are the different types we support:
 
-### [`hero`](<(./src/app/views/home/sections/hero.component.ts)>)
+### [`hero`](./src/app/views/home/sections/hero.component.ts)
 
 A hero element is usually an image but can also be a text, a slogan, something eye-catchy, which creates a "selling-point" for the product or company. It can also contain an action or two - links to the product or something related to the product. So the additional properties available for sections of `"type": "hero"` are:
 
@@ -59,7 +59,23 @@ A hero element is usually an image but can also be a text, a slogan, something e
   - `name` - the link text
   - `url` - the url for the link
 
-### [`carousel`](<(./src/app/views/home/sections/carousell.component.ts)>)
+**Example:**
+
+```json
+{
+  "type": "hero",
+  "backdropImage": "link/to/background/image.webp",
+  "logo": "link/to/logo.svg",
+  "actions": [
+    {
+      "name": "Link text",
+      "url": "/link/to/page"
+    }
+  ]
+}
+```
+
+### [`carousel`](./src/app/views/home/sections/carousell.component.ts)
 
 This type of element works as a show-case. It presents images in a horizontal grid. Each image can have a link attached to it.
 
@@ -71,7 +87,25 @@ This type of element works as a show-case. It presents images in a horizontal gr
   - `link` - if this is present in the object, the image will be clickable and route to either an internal or external url.
   - `header` - used for accessibility reasons.
 
-### [`social`](<(./src/app/views/home/sections/social.component.ts)>)
+**Example:**
+
+```json
+{
+  "type": "carousel",
+  "header": "This is a header text",
+  "headerPosition": "right",
+  "class": "toothrack top",
+  "images": [
+    {
+      "url": "link/to/image.webp",
+      "header": "Project name",
+      "link": "/link/to/page"
+    }
+  ]
+}
+```
+
+### [`social`](./src/app/views/home/sections/social.component.ts)
 
 A list of contact points, usually social media links but if `action` is present, it will link to a custom action. Currently we only support one action: `newsletter`, which will bring up a newsletter subscription dialog.
 
@@ -85,6 +119,25 @@ A list of contact points, usually social media links but if `action` is present,
   - `url` - **(Optional)** either a url is provided or an action
   - `action` - **(Optional)** if not provided, a url must be provided
 
+**Example:**
+
+```json
+{
+  "type": "social",
+  "header": "This is a header text",
+  "headerPosition": "right",
+  "class": "toothrack top",
+  "links": [
+    {
+      "name": "Link name",
+      "description": "A descriptive text",
+      "url": "https://external/link",
+      "image": "link/to/image.svg"
+    }
+  ]
+}
+```
+
 ### [`text`](./src/app/views/home/sections/text.component.ts)
 
 A block of text accompanied with an optional image
@@ -94,16 +147,80 @@ A block of text accompanied with an optional image
 - `headerPosition` - **(Optional)** either `left` (_default if omitted_) or `right`
 - `class` - a css class to add to this section.
 - `text` - The block of text to render
-- `image` - An image to display aside the text
+- `image` - An optional image to display aside the text
   - `position` - Either `before` (_default if omitted_) or `after`
   - `url` - The image url to display
+
+**Example:**
+
+```json
+{
+  "type": "text",
+  "header": "This is a header text",
+  "text": "And some content",
+  "class": "toothrack top reverse",
+  "actions": [
+    {
+      "name": "Link text",
+      "url": "/link/to/page"
+    }
+  ],
+  "image": {
+    "position": "after",
+    "url": "link/to/image.svg"
+  }
+}
+```
 
 ## [`about`](./src/app/views/about-us/README.md) Overview
 
 The configuration for the [`/about`](https://vertebrae-ent.github.io/about) route.
 
+**Example:**
+
+```json
+  "about": {
+    "header": "This is a header text",
+    "description": "And some content",
+    "people": [
+      {
+        "name": "Article header",
+        "role": "Sub header",
+        "image": "link/to/image.webp",
+        "description": "Descriptive text"
+      }
+    ]
+  },
+```
+
 ## [`projects`](./src/app/views/projects/README.md) Overview
 
 The configuration for the [`/projects`](https://vertebrae-ent.github.io/projects) route.
 
+**Example:**
+
+```json
+  "projects": [
+    {
+      "url": "link/to/image.webp",
+      "header": "Project title",
+      "link": "/link/to/page",
+      "timeline": [
+        "[yymmdd].md"
+      ]
+    }
+  ],
+```
+
 ## [`linkList`](./src/app/shared/link-list.component.ts) Overview
+
+**Example:**
+
+```json
+  "linkList": [
+    {
+      "name": "Link text",
+      "url": "/link/to/page"
+    }
+  ]
+```
