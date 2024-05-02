@@ -2,14 +2,35 @@
 
 ## How to run this
 
-You will need to have NodeJS and git installed before you do this. First clone the repo. Then run:
+You will need to have [NodeJS](https://nodejs.org/en/download/current) and [git](https://git-scm.com/downloads) installed before you do this. 
+Open a terminal and run:
 
 ```
+git clone git@github.com:vertebrae-ent/vertebrae-ent.github.io.git
+cd vertebrae-ent.github.io
+git checkout staging
 npm install
 npm start
 ```
 
-This will install the dependencies and start the project locally. You may view the result in `http://localhost:4200`.
+This will:
+
+1. clone this repo (if you haven't [registerred your ssh keys in github](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account), you must use `git clone https://github.com/vertebrae-ent/vertebrae-ent.github.io.git` instead. But this will require you to enter your password each time you want to push your changes back to github. It is highly recommended to create ssh key pairs).
+2. change current working directory to the cloned project directory
+3. switch branch to `staging`. If your site is live, you may skip this step because the live branch is `main` and that's the default when you clone the repo.
+4. install the dependencies
+5. and start the project locally.
+
+You may view the result in `http://localhost:4200`.
+
+## How to make changes
+
+Open the project in a text editor. [VSCode](https://code.visualstudio.com/download) is recommended. Make your changes and save. If you add markdown posts or change the index.json, changes may not be visible instantly. You may need to do a CTRL + C in your active terminal to abort the run and re-run the local dev server using `npm start`. After you have tested your changes in the browser, you can commit and push your changes:
+
+```
+git commit -am "Describe your changes"
+git push
+```
 
 If you do make changes, remember that the website will be published automatically when code is pushed to the `main` branch. This is done using the [`Build and Deploy`](./.github/workflows/build-deploy.yml) Github Action included in this repo.
 
