@@ -25,7 +25,11 @@ You may view the result in `http://localhost:4200`.
 
 ## How to make changes
 
-Open the project in a text editor. [VSCode](https://code.visualstudio.com/download) is recommended. Make your changes and save. If you add markdown posts or change the index.json, changes may not be visible instantly. You may need to do a CTRL + C in your active terminal to abort the run and re-run the local dev server using `npm start`. After you have tested your changes in the browser, you can commit and push your changes:
+Open the project in a text editor. [VSCode](https://code.visualstudio.com/download) is recommended. 
+
+Make your changes and save. If you add markdown posts or change the index.json, changes may not be visible instantly. You may need to do a CTRL + C in your active terminal to abort the run and re-run the local dev server using `npm start`. 
+
+After you have tested your changes in the browser, you can commit and push your changes:
 
 ```
 git commit -am "Describe your changes"
@@ -33,6 +37,12 @@ git push
 ```
 
 If you do make changes, remember that the website will be published automatically when code is pushed to the `main` branch. This is done using the [`Build and Deploy`](./.github/workflows/build-deploy.yml) Github Action included in this repo.
+
+## Alternative way to make changes
+
+Open vscode online on the repo from here: https://vscode.dev/github/vertebrae-ent/vertebrae-ent.github.io/tree/staging
+
+Make your changes, commit and push directly from vscode. But this will not allow you to test your changes before pushing them, unless you set up [github codespaces](https://docs.github.com/codespaces/about-codespaces). 
 
 ## Micro Content Management System - Introduction
 
