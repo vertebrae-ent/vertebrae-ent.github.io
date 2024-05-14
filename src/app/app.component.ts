@@ -6,10 +6,10 @@ import {
   HostBinding,
   HostListener,
   OnInit,
-  ViewChild,
   computed,
   inject,
   signal,
+  viewChild,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CMSLinks, CMSSectionTypeSocial } from './app.model';
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
 
   @HostBinding('class') className = 'app-root';
 
-  @ViewChild('nagModal') modal!: ElementRef<HTMLDialogElement>;
+  modal = viewChild<ElementRef<HTMLDialogElement>>('nagModal');
   userRequestedNag = signal(false);
 
   openedAt = -1;
@@ -86,8 +86,8 @@ export class AppComponent implements OnInit {
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent) {
     const now = performance.now(); // Must check the time, because the click event is fired before the dialog is opened
-    if (this.modal.nativeElement.open && now - this.openedAt > 100) {
-      var rect = this.modal.nativeElement.getBoundingClientRect();
+    if (this.modal()?.nativeElement?.open && now - this.openedAt > 100) {
+      var rect = this.modal()!.nativeElement.getBoundingClientRect();
       var isInDialog =
         rect.top <= event.clientY &&
         event.clientY <= rect.top + rect.height &&
@@ -114,7 +114,7 @@ export class AppComponent implements OnInit {
       // User has not accepted nor rejected the newsletter thingy
       // Show nag-dialog
       if (event != null) event.preventDefault();
-      this.modal.nativeElement.showModal();
+      this.modal()!.nativeElement.showModal();
       this.openedAt = performance.now();
       return true;
     }
@@ -126,7 +126,7 @@ export class AppComponent implements OnInit {
    */
   closeNagDialog() {
     localStorage.setItem('newsNagDone', 'true');
-    this.modal.nativeElement.close();
+    this.modal()!.nativeElement.close();
     console.log('Canceled!');
   }
 }

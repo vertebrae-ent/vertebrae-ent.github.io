@@ -1,3 +1,4 @@
+<!-- Top header -->
 <header class="toothrack bottom">
   <section class="page-width">
     <a class="group" [routerLink]="['/']" aria-label="To homepage">
@@ -31,10 +32,12 @@
   </section>
 </header>
 
+<!-- This is where all the content goes -->
 <main class="page-width">
   <router-outlet></router-outlet>
 </main>
 
+<!-- Footer -->
 <footer>
   <app-linklist class="page-width">
     <a class="logo-group" [routerLink]="['/']" aria-label="To homepage">
