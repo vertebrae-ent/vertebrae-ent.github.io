@@ -22,10 +22,8 @@ export class AppAboutUsComponent {
   selectedPerson = signal<CMSPeople | undefined>(undefined);
 
   selectPerson(person: CMSPeople) {
-    if (this.selectedPerson() === person) {
-      this.selectedPerson.set(undefined);
-    } else {
-      this.selectedPerson.set(person);
-    }
+    this.selectedPerson.set(
+      this.selectedPerson() === person ? undefined : person,
+    );
   }
 }

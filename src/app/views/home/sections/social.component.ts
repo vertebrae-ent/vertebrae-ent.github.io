@@ -1,10 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CMSLinks, CMSSection, CMSSectionTypeSocial } from 'src/app/app.model';
 import { AppTooltipDirective } from 'src/app/shared/tooltip.directive';
 import { AbstractSectionComponent } from './abstract-section.component';
@@ -63,11 +58,6 @@ import { AbstractSectionComponent } from './abstract-section.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppSectionSocialComponent extends AbstractSectionComponent<CMSSectionTypeSocial> {
-  @HostBinding('class')
-  get className() {
-    return this.classList();
-  }
-
   @Input() set section(section: CMSSection) {
     // Sanitize section
     const data = structuredClone(section) as CMSSectionTypeSocial;

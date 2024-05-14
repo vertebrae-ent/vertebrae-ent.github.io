@@ -1,4 +1,11 @@
-import { WritableSignal, computed, inject, signal } from '@angular/core';
+import {
+  Directive,
+  HostBinding,
+  WritableSignal,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CMSSection } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
@@ -6,6 +13,7 @@ import { AppService } from 'src/app/app.service';
 /**
  * Common functionality for all section components
  */
+@Directive()
 export abstract class AbstractSectionComponent<T extends CMSSection> {
   service = inject(AppService);
   sec = inject(DomSanitizer);
@@ -18,6 +26,11 @@ export abstract class AbstractSectionComponent<T extends CMSSection> {
       ...(this._section().class?.split(' ') ?? []),
     ].join(' '),
   );
+
+  @HostBinding('class')
+  get className() {
+    return this.classList();
+  }
 
   abstract set section(section: CMSSection);
 }

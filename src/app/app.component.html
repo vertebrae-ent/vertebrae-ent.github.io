@@ -10,7 +10,7 @@
     <nav class="menu">
       <img src="assets/asset_menutooth.svg" alt="Menu icon" />
       <ul class="knuckles links">
-        @for (link of social()?.links; track link) {
+        @for (link of social().links; track link) {
           <li [tooltip]="link.description" [tooltipPos]="'bottom'">
             @if (link.url != null) {
               <a

@@ -1,10 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CMSSection, CMSSectionTypeHero } from 'src/app/app.model';
 import { AbstractSectionComponent } from './abstract-section.component';
@@ -90,11 +85,6 @@ import { AbstractSectionComponent } from './abstract-section.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppSectionHeroComponent extends AbstractSectionComponent<CMSSectionTypeHero> {
-  @HostBinding('class')
-  get className() {
-    return this.classList();
-  }
-
   @Input() set section(section: CMSSection) {
     // Sanitize section
     const data = structuredClone(section) as CMSSectionTypeHero;
