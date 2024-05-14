@@ -1,0 +1,37 @@
+/**
+ * We use one element for all tooltips. This is economical because
+ * one user can never invoke more than one tooltip at a time.
+ */
+#tooltip {
+  position: absolute;
+  z-index: 30;
+  color: white;
+  background-color: black;
+  border-radius: 8px;
+  padding: 1rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  // Add a pseudo-element for the triangle
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%; // Center it horizontally
+    transform: translateX(-50%); // Ensure it's centered
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent; // Size of the triangle
+    border-right: 10px solid transparent; // Size of the triangle
+  }
+  &.top::after {
+    border-top: 10px solid black; // Color and direction of the triangle
+    bottom: -10px; // Position it at the bottom of the tooltip
+  }
+  &.bottom::after {
+    top: -10px; // Position it at the bottom of the tooltip
+    border-bottom: 10px solid black; // Color and direction of the triangle
+  }
+  &.show {
+    opacity: 1;
+  }
+}

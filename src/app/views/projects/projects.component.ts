@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostListener,
@@ -23,6 +24,7 @@ import { AppSectionSocialComponent } from '../home/sections/social.component';
   styleUrl: './projects.component.scss',
   standalone: true,
   imports: [CommonModule, RouterModule, AppSectionSocialComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppProjectsComponent {
   service = inject(AppService);

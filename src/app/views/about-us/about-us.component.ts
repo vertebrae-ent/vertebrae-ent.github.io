@@ -1,4 +1,10 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 import { CMSPeople } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
 
@@ -8,6 +14,7 @@ import { AppService } from 'src/app/app.service';
   styleUrl: './about-us.component.scss',
   standalone: true,
   imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppAboutUsComponent {
   service = inject(AppService);

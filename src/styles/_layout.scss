@@ -1,4 +1,4 @@
-.app-root {
+body {
   /* Background setup */
   background-image: url("/assets/asset_fossilwall.svg");
   background-size: 22rem;
@@ -80,6 +80,7 @@
   background: var(--body-background-color);
   contain: content;
   @media screen and (min-width: 1024px) {
+    // We use the backside of the toothrack asset for the border around the main content
     &::before,
     &::after {
       content: "";

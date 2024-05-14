@@ -4,6 +4,9 @@
 * {
   box-sizing: border-box;
 }
+:root {
+  color-scheme: dark;
+}
 html,
 body {
   min-height: 100dvh; /* Page should take up the entire viewport height */
@@ -81,51 +84,6 @@ body {
   font-weight: normal;
 }
 
-/*
- * This class uses variables to allow for flexible customization
- *  --color: specify a color to colorize the toothrack svg
- *  --rotate: specify a rotation to perform. The rotation will be a negative for top
- *  --height: specify the amount of space the toothrack pushes upward/downward
- */
-.toothrack {
-  position: relative;
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    mask-repeat: repeat-x;
-    top: 0;
-    bottom: 0;
-    left: -1rem;
-    right: -6px;
-    pointer-events: none;
-  }
-  &.top::before,
-  &.bottom::after {
-    mask-image: url("/assets/asset_toothrack.svg");
-    background-color: var(--color);
-  }
-  &.top::before {
-    top: calc(var(--height, 2.8em) * 2 * -1);
-    height: calc(var(--height, 2.8em) * 4);
-    rotate: calc((var(--rotate, 4.2deg) * -1) - 180deg);
-  }
-  &.bottom::after {
-    rotate: var(--rotate, 4.2deg);
-    bottom: calc(var(--height, 2.8em) * -1);
-  }
-  &.reverse::before,
-  &.reverse::after {
-    scale: -1 1;
-  }
-  &.reverse.top::before {
-    rotate: calc((var(--rotate, 4.2deg)) - 180deg);
-  }
-  &.reverse.bottom::after {
-    rotate: calc(var(--rotate, 4.2deg) * -1);
-  }
-}
-
 .section:has(+ .toothrack) {
   padding-bottom: 5em;
 }
@@ -146,61 +104,6 @@ body {
     max-width: 25%;
     grid-area: 5 / 1 / 6 / -1; /* Push the logo to the bottom (row 5 - 6) on mobile displays */
     aspect-ratio: 5;
-  }
-}
-.knuckles {
-  flex-wrap: no-wrap;
-  li {
-    background-image: url("/assets/asset_knuckle.svg");
-    background-repeat: no-repeat;
-    background-size: 110%;
-    background-position: -0.2em 0.2em;
-    min-width: var(--knuckle-size);
-    width: var(--knuckle-size);
-    min-height: var(--knuckle-size);
-    height: var(--knuckle-size);
-    padding: 2vw;
-    display: flex;
-    place-content: center;
-    place-items: center;
-    flex: 1;
-    transition-property: all;
-    transition-duration: 0.1s;
-    transition-timing-function: ease-in-out;
-    aspect-ratio: 0.9;
-    @media screen and (min-width: 1024px) {
-      padding: 1.6rem;
-    }
-    @media screen and (max-width: 450px) {
-      &.filler {
-        display: none;
-      }
-    }
-    &:has(a):hover {
-      filter: invert(1);
-      background-size: 100%;
-      background-position: 1px 0.53em;
-      scale: 1.12;
-      a img {
-        scale: 0.88;
-        translate: 0 -2px;
-      }
-    }
-    a {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      place-content: center;
-      place-items: center;
-      img {
-        width: 100%;
-        height: 100%;
-        transform-origin: center;
-        transition-property: all;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-      }
-    }
   }
 }
 
@@ -240,40 +143,5 @@ body {
       width: 100%;
       object-fit: cover;
     }
-  }
-}
-
-#tooltip {
-  position: absolute;
-  z-index: 30;
-  // display: none;
-  color: white;
-  background-color: black;
-  border-radius: 8px;
-  padding: 1rem;
-  text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  // Add a pseudo-element for the triangle
-  &::after {
-    content: "";
-    position: absolute;
-    left: 50%; // Center it horizontally
-    transform: translateX(-50%); // Ensure it's centered
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent; // Size of the triangle
-    border-right: 10px solid transparent; // Size of the triangle
-  }
-  &.top::after {
-    border-top: 10px solid black; // Color and direction of the triangle
-    bottom: -10px; // Position it at the bottom of the tooltip
-  }
-  &.bottom::after {
-    top: -10px; // Position it at the bottom of the tooltip
-    border-bottom: 10px solid black; // Color and direction of the triangle
-  }
-  &.show {
-    opacity: 1;
   }
 }

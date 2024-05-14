@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
 import { AppService } from '../../app.service';
 import { AppSectionCarouselComponent } from './sections/carousell.component';
 import { AppSectionHeroComponent } from './sections/hero.component';
@@ -21,6 +26,7 @@ import { AppSectionTextComponent } from './sections/text.component';
     AppSectionSocialComponent,
     AppSectionTextComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppHomeComponent {
   service = inject(AppService);

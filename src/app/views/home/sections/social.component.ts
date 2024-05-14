@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostBinding, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+} from '@angular/core';
 import { CMSLinks, CMSSection, CMSSectionTypeSocial } from 'src/app/app.model';
 import { AppTooltipDirective } from 'src/app/shared/tooltip.directive';
 import { AbstractSectionComponent } from './abstract-section.component';
@@ -55,6 +60,7 @@ import { AbstractSectionComponent } from './abstract-section.component';
   `,
   standalone: true,
   imports: [CommonModule, AppTooltipDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppSectionSocialComponent extends AbstractSectionComponent<CMSSectionTypeSocial> {
   @HostBinding('class')

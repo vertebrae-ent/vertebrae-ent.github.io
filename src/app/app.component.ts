@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostBinding,
@@ -39,6 +40,7 @@ import { AppTooltipDirective } from './shared/tooltip.directive';
     AppTooltipDirective,
   ],
   providers: [AppService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   service = inject(AppService);

@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostBinding, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CMSSection, CMSSectionTypeCarousel } from 'src/app/app.model';
 import { AbstractSectionComponent } from './abstract-section.component';
@@ -38,6 +43,7 @@ import { AbstractSectionComponent } from './abstract-section.component';
   `,
   standalone: true,
   imports: [CommonModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppSectionCarouselComponent extends AbstractSectionComponent<CMSSectionTypeCarousel> {
   @HostBinding('class')

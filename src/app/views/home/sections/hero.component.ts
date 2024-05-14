@@ -1,5 +1,10 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, HostBinding, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CMSSection, CMSSectionTypeHero } from 'src/app/app.model';
 import { AbstractSectionComponent } from './abstract-section.component';
@@ -82,6 +87,7 @@ import { AbstractSectionComponent } from './abstract-section.component';
   `,
   standalone: true,
   imports: [CommonModule, RouterModule, NgOptimizedImage],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppSectionHeroComponent extends AbstractSectionComponent<CMSSectionTypeHero> {
   @HostBinding('class')
