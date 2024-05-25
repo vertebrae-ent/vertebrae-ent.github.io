@@ -1,6 +1,10 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { AppComponent } from './app/app.component';
 import { AppAboutUsComponent } from './app/views/about-us/about-us.component';
 import { AppHomeComponent } from './app/views/home/home.component';
@@ -19,6 +23,7 @@ import { AppProjectsComponent } from './app/views/projects/projects.component';
  */
 bootstrapApplication(AppComponent, {
   providers: [
+    provideHttpClient(withInterceptorsFromDi()),
     provideRouter([
       // The landing page is the default route
       { path: '', component: AppHomeComponent },

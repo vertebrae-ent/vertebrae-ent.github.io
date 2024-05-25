@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,15 +31,14 @@ import { AppTooltipDirective } from './shared/tooltip.directive';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
     RouterModule,
-    HttpClientModule,
     AppLinkListComponent,
     AppTooltipDirective,
   ],
   providers: [AppService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   service = inject(AppService);
@@ -87,6 +85,7 @@ export class AppComponent implements OnInit {
    */
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent) {
+    console.trace('click', event);
     const now = performance.now(); // Must check the time, because the click event is fired before the dialog is opened
     if (this.modal()?.nativeElement?.open && now - this.openedAt > 100) {
       var rect = this.modal()!.nativeElement.getBoundingClientRect();
