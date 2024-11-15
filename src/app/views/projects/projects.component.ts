@@ -4,6 +4,7 @@ import {
   ElementRef,
   HostListener,
   computed,
+  effect,
   inject,
   signal,
   viewChild,
@@ -16,6 +17,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { map } from 'rxjs';
 import { CMSSectionTypeSocial } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
+import { LightboxComponent } from 'src/app/shared/lightbox.component';
 import { AppSectionSocialComponent } from '../home/sections/social.component';
 
 @Component({
@@ -23,7 +25,12 @@ import { AppSectionSocialComponent } from '../home/sections/social.component';
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
   standalone: true,
-  imports: [CommonModule, RouterModule, AppSectionSocialComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    AppSectionSocialComponent,
+    LightboxComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppProjectsComponent {
@@ -35,8 +42,10 @@ export class AppProjectsComponent {
   observer?: IntersectionObserver;
   selectedImage = signal<HTMLImageElement | undefined>(undefined);
   currentCarousel = signal<HTMLElement | undefined>(undefined);
+  openedCarousel = signal<HTMLImageElement | undefined>(undefined);
 
-  dialog = viewChild.required<ElementRef<HTMLDialogElement>>('largeImage');
+  // dialog = viewChild.required<ElementRef<HTMLDialogElement>>('largeImage');
+  popover = viewChild.required<ElementRef<any>>('lightbox');
 
   // The config for this page
   config = computed(() => this.service.config().projects);
@@ -51,8 +60,8 @@ export class AppProjectsComponent {
   selectedRoute = toSignal(this.route.params.pipe(map((p) => p['id'])));
   selected = computed(
     () =>
-      this.selectedRoute() &&
       this.config() &&
+      this.selectedRoute() &&
       this.config().find((project) =>
         project.link.includes(this.selectedRoute()),
       ),
@@ -60,27 +69,45 @@ export class AppProjectsComponent {
 
   // Load the timeline posts for the selected project
   timeline = computed(() => {
-    return (
-      this.selected() &&
-      this.selected().timeline.map((t: string) => {
-        // Parse the date from the filename
-        const [year, month, day] = t
-          .replace(/^projects\/(.*)\.md$/, '$1')
-          .replace(/(\d{2})(\d{2})(\d{2})/, '$1-$2-$3')
-          .split('-');
-        const date = new Date(
-          parseInt(year.length === 2 ? `20${year}` : year),
-          parseInt(month) - 1,
-          parseInt(day),
-        );
-        // Return the date and the content-loader for the post
-        return {
-          date,
-          content: this.service.loadPost(t),
-        };
-      })
-    );
+    const timeline =
+      this.selected()?.timeline ||
+      this.config().flatMap((project) => project.timeline);
+    return timeline.map((t: string) => {
+      // Parse the date from the filename
+      const [year, month, day] = t
+        .replace(/^projects\/(.*)\.md$/, '$1')
+        .replace(/(\d{2})(\d{2})(\d{2})/, '$1-$2-$3')
+        .split('-');
+      const date = new Date(
+        parseInt(year.length === 2 ? `20${year}` : year),
+        parseInt(month) - 1,
+        parseInt(day),
+      );
+      // Return the date and the content-loader for the post
+      return {
+        date,
+        content: this.service.loadPost(t),
+      };
+    });
   });
+
+  constructor() {
+    effect(() =>
+      this.selectedImage()?.scrollIntoView({
+        block: 'nearest',
+        inline: 'start',
+        behavior: 'smooth',
+      }),
+    );
+    effect(
+      () => {
+        if (this.openedCarousel() !== this.selectedImage()) {
+          this.selectedImage.set(this.openedCarousel());
+        }
+      },
+      { allowSignalWrites: true },
+    );
+  }
 
   /**
    * Will execute when pointer is over the carousel. This will create and start an
@@ -136,8 +163,11 @@ export class AppProjectsComponent {
   @HostListener('click', ['$event'])
   onClick(evt: MouseEvent) {
     const target = evt.target as HTMLElement;
+    if (target.closest('#lightbox')) return;
     // Get all the images in the post
-    let imgNodes = target.closest('.img-carousel')?.querySelectorAll('img');
+    let imgNodes = (this.openedCarousel() || target)
+      .closest('.img-carousel')
+      ?.querySelectorAll('img');
     if (imgNodes?.length) {
       const images = Array.from(imgNodes).filter(
         (i) => !i.classList.contains('btn'),
@@ -150,29 +180,16 @@ export class AppProjectsComponent {
         // Previous image is clicked. Scroll to the previous image
         if (currentIndex > 0) {
           this.selectedImage.set(images.at(currentIndex - 1));
-          this.selectedImage()?.scrollIntoView({ behavior: 'smooth' });
         }
       } else if (target.closest('.next')) {
         // Next image is clicked. Scroll to the next image
         if (currentIndex < images.length - 1) {
           this.selectedImage.set(images.at(currentIndex + 1));
-          this.selectedImage()?.scrollIntoView({ behavior: 'smooth' });
         }
       } else if (target.closest('img')) {
         // The actual image is clicked. Enlarge the image
-        this.showImage(evt);
+        this.openedCarousel.set(evt.target as HTMLImageElement);
       }
     }
-  }
-
-  showImage(evt: MouseEvent) {
-    setTimeout(() => {
-      const closeModal = () => {
-        this.dialog().nativeElement.close();
-        document.removeEventListener('click', closeModal);
-      };
-      document.addEventListener('click', closeModal);
-    });
-    this.dialog().nativeElement.showModal();
   }
 }

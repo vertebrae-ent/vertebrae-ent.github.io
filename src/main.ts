@@ -1,5 +1,5 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withViewTransitions } from '@angular/router';
 
 import {
   provideHttpClient,
@@ -34,6 +34,6 @@ bootstrapApplication(AppComponent, {
       { path: 'projects', component: AppProjectsComponent },
       // Catch all route redirecting to home page
       { path: '**', redirectTo: '' },
-    ]),
+    ], withViewTransitions({skipInitialTransition: false})),
   ],
 }).catch((err) => console.error(err));

@@ -10,6 +10,10 @@
 html,
 body {
   min-height: 100dvh; /* Page should take up the entire viewport height */
+  scrollbar-gutter: stable;
+  scrollbar-color: var(--grey-color) transparent;
+  scrollbar-width: thin;
+  max-width: 100vw;
 }
 html {
   font-size: 13px; /* Base font size */
@@ -130,7 +134,23 @@ body {
   place-content: center;
   overflow-x: auto;
   > a {
-    display: contents;
+    display: flex;
+    transition: background-color 200ms ease-in;
+    &:hover {
+      background-color: var(--body-background-color);
+    }
+    &.selected {
+      display: flex;
+      background: radial-gradient(
+        color-mix(
+          in srgb,
+          var(--accent-color),
+          var(--body-background-color) 70%
+        ),
+        var(--body-background-color) 70%
+      );
+      background-color: var(--body-background-color);
+    }
   }
   picture {
     position: relative;

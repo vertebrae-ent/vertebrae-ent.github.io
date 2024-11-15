@@ -85,7 +85,6 @@ export class AppComponent implements OnInit {
    */
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent) {
-    console.trace('click', event);
     const now = performance.now(); // Must check the time, because the click event is fired before the dialog is opened
     if (this.modal()?.nativeElement?.open && now - this.openedAt > 100) {
       var rect = this.modal()!.nativeElement.getBoundingClientRect();

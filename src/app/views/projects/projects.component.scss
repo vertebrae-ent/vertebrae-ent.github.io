@@ -3,8 +3,6 @@
   grid-template-rows: auto auto 1fr auto;
   min-height: calc(100dvh - 11rem);
   padding-top: 2em;
-  margin-top: 4em;
-  margin-bottom: 6rem;
   background-color: var(--grey-color);
   position: relative;
   z-index: -2; // If not, the before psueudo element of time will be hidden
@@ -15,11 +13,6 @@
 
   p {
     margin: 2rem var(--text-margin);
-  }
-
-  .tabs .selected {
-    display: flex;
-    background-color: var(--body-background-color);
   }
 
   .timeline {
@@ -67,33 +60,6 @@
       }
       .img-carousel {
         clear: both;
-      }
-    }
-  }
-  dialog {
-    section {
-      display: flex;
-      place-content: center;
-      position: relative;
-      .prev,
-      .next {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        padding: 0.5em;
-        cursor: pointer;
-        width: 2em;
-        display: flex;
-        place-content: center;
-        > img {
-          width: 2em;
-        }
-      }
-      .prev {
-        left: 0;
-      }
-      .next {
-        right: 0;
       }
     }
   }

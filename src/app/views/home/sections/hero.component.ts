@@ -57,28 +57,22 @@ import { AbstractSectionComponent } from './abstract-section.component';
         alt="Project logo"
       />
       <div class="link-group">
-        @for (action of _section().actions; track action) {
-          <ng-container
-            *ngTemplateOutlet="anchor; context: { $implicit: action }"
-          ></ng-container>
+        @for (link of _section().actions; track link) {
+          @if (link.isInternal) {
+            <a
+              [routerLink]="[link.url]"
+              [target]="link.target"
+              class="button-link"
+              >{{ link.name }}</a
+            >
+          } @else {
+            <a [href]="link.url" [target]="link.target" class="button-link">{{
+              link.name
+            }}</a>
+          }
         }
       </div>
     </picture>
-
-    <ng-template #anchor let-link>
-      @if (link.isInternal) {
-        <a
-          [routerLink]="[link.url]"
-          [target]="link.target"
-          class="button-link"
-          >{{ link.name }}</a
-        >
-      } @else {
-        <a [href]="link.url" [target]="link.target" class="button-link">{{
-          link.name
-        }}</a>
-      }
-    </ng-template>
   `,
   standalone: true,
   imports: [CommonModule, RouterModule, NgOptimizedImage],

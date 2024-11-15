@@ -103,6 +103,12 @@
         "role": "Game Programmer",
         "image": "assets/people/Aage.webp",
         "description": ""
+      },
+      {
+        "name": "The team",
+        "role": "Team",
+        "image": "assets/people/Team.webp",
+        "description": "This is a team photo"
       }
     ]
   },

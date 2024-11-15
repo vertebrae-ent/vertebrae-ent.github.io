@@ -4,41 +4,43 @@
  *  --rotate: specify a rotation to perform. The rotation will be a negative for top
  *  --height: specify the amount of space the toothrack pushes upward/downward
  */
-.toothrack {
-  position: relative;
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    mask-repeat: repeat-x;
-    top: 0;
-    bottom: 0;
-    left: -1rem;
-    right: -6px;
-    pointer-events: none;
-  }
-  &.top::before,
-  &.bottom::after {
-    mask-image: url("/assets/asset_toothrack.svg");
-    background-color: var(--color);
-  }
-  &.top::before {
-    top: calc(var(--height, 2.8em) * 2 * -1);
-    height: calc(var(--height, 2.8em) * 4);
-    rotate: calc((var(--rotate, 4.2deg) * -1) - 180deg);
-  }
-  &.bottom::after {
-    rotate: var(--rotate, 4.2deg);
-    bottom: calc(var(--height, 2.8em) * -1);
-  }
-  &.reverse::before,
-  &.reverse::after {
-    scale: -1 1;
-  }
-  &.reverse.top::before {
-    rotate: calc((var(--rotate, 4.2deg)) - 180deg);
-  }
-  &.reverse.bottom::after {
-    rotate: calc(var(--rotate, 4.2deg) * -1);
+@media screen {
+  .toothrack {
+    position: relative;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      mask-repeat: repeat-x;
+      top: 0;
+      bottom: 0;
+      left: -1rem;
+      right: -6px;
+      pointer-events: none;
+    }
+    &.top::before,
+    &.bottom::after {
+      mask-image: url("/assets/asset_toothrack.svg");
+      background-color: var(--color);
+    }
+    &.top::before {
+      top: calc(var(--height, 2.8em) * 2 * -1);
+      height: calc(var(--height, 2.8em) * 4);
+      rotate: calc((var(--rotate, 4.2deg) * -1) - 180deg);
+    }
+    &.bottom::after {
+      rotate: var(--rotate, 4.2deg);
+      bottom: calc(var(--height, 2.8em) * -1);
+    }
+    &.reverse::before,
+    &.reverse::after {
+      scale: -1 1;
+    }
+    &.reverse.top::before {
+      rotate: calc((var(--rotate, 4.2deg)) - 180deg);
+    }
+    &.reverse.bottom::after {
+      rotate: calc(var(--rotate, 4.2deg) * -1);
+    }
   }
 }

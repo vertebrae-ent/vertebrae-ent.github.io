@@ -14,12 +14,17 @@ import { AbstractSectionComponent } from './abstract-section.component';
     :host {
       --color: var(--accent-color);
       --knuckle-size: 11.1%;
+      view-transition-name: --section-social;
       background-color: var(--color);
       display: block;
       padding-bottom: 1rem;
+      clip-path: inset(-9rem 0 0 0);
       div {
         position: relative;
         z-index: 2;
+      }
+      @media print {
+        display: none;
       }
     }
   `,
