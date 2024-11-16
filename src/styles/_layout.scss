@@ -83,6 +83,7 @@ body {
   width: 100%;
   background: var(--body-background-color);
   contain: content;
+  margin-top: -1rem;
   @media screen and (min-width: 1024px) {
     // We use the backside of the toothrack asset for the border around the main content
     &::before,
@@ -100,7 +101,7 @@ body {
       view-transition-name: --main-content-before;
       transform-origin: bottom left;
       rotate: 90deg;
-      left: 0px;
+      left: -1px;
       right: min(-100vw, -100vh);
       translate: 0px -10rem;
       background: linear-gradient(
@@ -111,9 +112,9 @@ body {
     }
     &::after {
       view-transition-name: --main-content-after;
-      transform-origin: top right;
+      transform-origin: bottom right;
       rotate: -90deg;
-      right: 6px;
+      right: -1px;
       left: min(-100vw, -100vh);
       background: linear-gradient(
         -180deg,
