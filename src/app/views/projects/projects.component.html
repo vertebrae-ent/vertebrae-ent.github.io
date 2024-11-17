@@ -25,7 +25,8 @@
         (mouseleave)="unwatchPost($event)"
       >
         <span>
-          <time>{{ post.date | date: "yyyy-MM" }}</time>
+          <!-- <time>{{ post.date | date: "yyyy-MM" }}</time> -->
+          <time>{{ post.date }}</time>
         </span>
         <div [innerHTML]="post.content | async"></div>
       </article>

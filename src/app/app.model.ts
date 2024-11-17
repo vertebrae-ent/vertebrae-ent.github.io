@@ -151,8 +151,13 @@ export interface CMSLinks {
 }
 
 export interface CMSProjects extends CMSImage {
-  timeline: string[];
+  timeline: CMSProjectPost[];
   _parsed?: string;
+}
+
+export interface CMSProjectPost {
+  fileName: string;
+  date: string;
 }
 
 export interface CMSAbout {

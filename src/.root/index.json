@@ -124,8 +124,9 @@
       "header": "Fangst",
       "link": "/projects/fangst",
       "timeline": [
-        "projects/240101.md",
-        "projects/240425.md"
+        { "fileName": "projects/240101.md", "date": "2024-01" },
+        { "fileName": "projects/240102.md", "date": "2024-02" },
+        { "fileName": "projects/240103.md", "date": "TBA" }
       ]
     }
   ],

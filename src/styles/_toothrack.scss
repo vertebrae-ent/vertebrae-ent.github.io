@@ -21,7 +21,8 @@
     &.top::before,
     &.bottom::after {
       mask-image: url("/assets/asset_toothrack.svg");
-      mask-repeat: round;
+      mask-size: 39rem auto;
+      mask-position: bottom;
       background-color: var(--color);
     }
     &.top::before {

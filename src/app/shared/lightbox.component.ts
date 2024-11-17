@@ -16,12 +16,11 @@ import { DomSanitizer } from '@angular/platform-browser';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section
+    <dialog
       id="lightbox"
       class="img-carousel"
       #popover
-      popover
-      (toggle)="toggle($event)"
+      (click)="toggle($event)"
     >
       <span class="prev" (click)="previous()" [attr.disabled]="!canPrevious()">
         <img class="btn" src="/assets/icons/back.svg" alt="Previous image" />
@@ -30,7 +29,7 @@ import { DomSanitizer } from '@angular/platform-browser';
       <span class="next" (click)="next()" [attr.disabled]="!canNext()">
         <img class="btn" src="/assets/icons/next.svg" alt="Next image" />
       </span>
-    </section>
+    </dialog>
   `,
   styles: `
     :host {
@@ -38,8 +37,8 @@ import { DomSanitizer } from '@angular/platform-browser';
         --article-background-color: var(--body-background-color);
         --carousel-button-gradient-width: 50%;
         --carousel-margin: 5em;
+        position: fixed;
         border: 0;
-        position: relative;
         transform: scale(0.8);
         height: max-content;
         width: max-content;
@@ -88,7 +87,7 @@ import { DomSanitizer } from '@angular/platform-browser';
               55%
           );
         }
-        &:popover-open {
+        &[open] {
           box-shadow: 0 0 6rem var(--grey-color);
           place-content: center;
           opacity: 1;
@@ -100,8 +99,8 @@ import { DomSanitizer } from '@angular/platform-browser';
         }
 
         @starting-style {
-          &:popover-open,
-          &:popover-open::backdrop {
+          &[open],
+          &[open]::backdrop {
             opacity: 0;
           }
         }
@@ -113,7 +112,6 @@ export class LightboxComponent {
   sanitize = inject(DomSanitizer);
   element = viewChild<ElementRef>('popover');
 
-  state = { open: false };
   openedImage = model<HTMLImageElement | undefined>();
   carouselContainer = computed(() =>
     this.openedImage()?.closest('.img-carousel'),
@@ -136,7 +134,7 @@ export class LightboxComponent {
     effect(() => {
       if (this.openedImage() != null) {
         const popoverElement = this.element()?.nativeElement;
-        popoverElement.showPopover();
+        popoverElement.showModal();
       }
     });
   }
@@ -154,9 +152,16 @@ export class LightboxComponent {
     }
   }
 
-  toggle(evt: Event) {
-    this.state.open = (evt as ToggleEvent).newState === 'open';
-    if (!this.state.open) {
+  toggle(evt: MouseEvent) {
+    const dialog = this.element()?.nativeElement;
+    const rect = dialog.getBoundingClientRect();
+    const isInDialog =
+      rect.top <= evt.clientY &&
+      evt.clientY <= rect.top + rect.height &&
+      rect.left <= evt.clientX &&
+      evt.clientX <= rect.left + rect.width;
+    if (!isInDialog) {
+      dialog.close();
       setTimeout(() => this.openedImage.set(undefined), 500);
     }
   }

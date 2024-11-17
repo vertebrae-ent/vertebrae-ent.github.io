@@ -2,7 +2,7 @@
 
 ## How to run this
 
-You will need to have [NodeJS](https://nodejs.org/en/download/current) and [git](https://git-scm.com/downloads) installed before you do this. 
+You will need to have [NodeJS](https://nodejs.org/en/download/current) and [git](https://git-scm.com/downloads) installed before you do this.
 Open a terminal and run:
 
 ```
@@ -25,9 +25,9 @@ You may view the result in `http://localhost:4200`.
 
 ## How to make changes
 
-Open the project in a text editor. [VSCode](https://code.visualstudio.com/download) is recommended. 
+Open the project in a text editor. [VSCode](https://code.visualstudio.com/download) is recommended.
 
-Make your changes and save. If you add markdown posts or change the index.json, changes may not be visible instantly. You may need to do a CTRL + C in your active terminal to abort the run and re-run the local dev server using `npm start`. 
+Make your changes and save. If you add markdown posts or change the index.json, changes may not be visible instantly. You may need to do a CTRL + C in your active terminal to abort the run and re-run the local dev server using `npm start`.
 
 After you have tested your changes in the browser, you can commit and push your changes:
 
@@ -42,7 +42,7 @@ If you do make changes, remember that the website will be published automaticall
 
 Open vscode online on the repo from here: https://vscode.dev/github/vertebrae-ent/vertebrae-ent.github.io/tree/staging
 
-Make your changes, commit and push directly from vscode. But this will not allow you to test your changes before pushing them, unless you set up [github codespaces](https://docs.github.com/codespaces/about-codespaces). 
+Make your changes, commit and push directly from vscode. But this will not allow you to test your changes before pushing them, unless you set up [github codespaces](https://docs.github.com/codespaces/about-codespaces).
 
 ## Micro Content Management System - Introduction
 
@@ -252,7 +252,9 @@ This is a page dedicated to the projects vertebrae entertainment is working on.
 - `url` - A link to the project logo
 - `header` - The project title.
 - `link` - The project page link. Must be `/projects/[your-project-name]`
-- `timeline` - A list of markdown filenames located under [./src/.root/\_posts](./src/.root/_posts/). Filenames must have the following format: `yymmdd.md` - That is two digit year, two digit month and two digit day.
+- `timeline` - A list of posts to be presented in a timeline. The sequence of posts are the sort order. They can be given in the following format:
+  - `fileName` - The filename of a markdown file located under [./src/.root/\_posts](./src/.root/_posts/). Filenames should have the following format: `yymmdd.md` - That is two digit year, two digit month and two digit day. The filename represents the published date for the post.
+  - `date` - The actual string listed next to the post in the webpage
 
 **Example:**
 
@@ -263,8 +265,8 @@ This is a page dedicated to the projects vertebrae entertainment is working on.
       "header": "Project title",
       "link": "/link/to/page",
       "timeline": [
-        "[yymmdd].md",
-        "[yymmdd].md"
+        {"fileName": "[yymmdd].md", "date": "2024-01" },
+        {"fileName": "[yymmdd].md", "date": "TBA" },
       ]
     }
   ]

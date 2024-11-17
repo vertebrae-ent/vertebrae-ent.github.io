@@ -15,7 +15,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { map } from 'rxjs';
-import { CMSSectionTypeSocial } from 'src/app/app.model';
+import { CMSProjectPost, CMSSectionTypeSocial } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
 import { LightboxComponent } from 'src/app/shared/lightbox.component';
 import { AppSectionSocialComponent } from '../home/sections/social.component';
@@ -40,11 +40,25 @@ export class AppProjectsComponent {
   el = inject(ElementRef);
 
   observer?: IntersectionObserver;
+  /** The currently visible image in the carousel */
   selectedImage = signal<HTMLImageElement | undefined>(undefined);
-  currentCarousel = signal<HTMLElement | undefined>(undefined);
+  /** The image opened in the lightbox */
   openedCarousel = signal<HTMLImageElement | undefined>(undefined);
+  /** All the images in the currently focused carousel */
+  focusedCarouselImages = computed(() =>
+    Array.from(
+      this.selectedImage()?.closest('.img-carousel')?.querySelectorAll('img') ??
+        [],
+    ).filter((i) => !i.classList.contains('btn')),
+  );
+  /** The index of the currently visible image in the currently focused carousel */
+  focusedCarouselImageIndex = computed(() =>
+    this.focusedCarouselImages().findIndex(
+      (image) => image === this.selectedImage(),
+    ),
+  );
 
-  // dialog = viewChild.required<ElementRef<HTMLDialogElement>>('largeImage');
+  /** The lightbox popover dialog */
   popover = viewChild.required<ElementRef<any>>('lightbox');
 
   // The config for this page
@@ -70,23 +84,26 @@ export class AppProjectsComponent {
   // Load the timeline posts for the selected project
   timeline = computed(() => {
     const timeline =
+      // Contains all the posts initially
       this.selected()?.timeline ||
+      // Or posts filtered by the selected project
       this.config().flatMap((project) => project.timeline);
-    return timeline.map((t: string) => {
+    return timeline.map((t: CMSProjectPost) => {
       // Parse the date from the filename
-      const [year, month, day] = t
+      const [year, month, day] = t.fileName
         .replace(/^projects\/(.*)\.md$/, '$1')
         .replace(/(\d{2})(\d{2})(\d{2})/, '$1-$2-$3')
         .split('-');
-      const date = new Date(
+      const publishedDate = new Date(
         parseInt(year.length === 2 ? `20${year}` : year),
         parseInt(month) - 1,
         parseInt(day),
       );
       // Return the date and the content-loader for the post
       return {
-        date,
-        content: this.service.loadPost(t),
+        publishedDate,
+        date: t.date,
+        content: this.service.loadPost(t.fileName),
       };
     });
   });
@@ -101,7 +118,10 @@ export class AppProjectsComponent {
     );
     effect(
       () => {
-        if (this.openedCarousel() !== this.selectedImage()) {
+        if (
+          this.openedCarousel() != null &&
+          this.openedCarousel() !== this.selectedImage()
+        ) {
           this.selectedImage.set(this.openedCarousel());
         }
       },
@@ -121,10 +141,7 @@ export class AppProjectsComponent {
       (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
             this.selectedImage.set(entry.target as HTMLImageElement);
-          } else {
-            entry.target.classList.remove('visible');
           }
         });
       },
@@ -135,7 +152,6 @@ export class AppProjectsComponent {
       },
     );
     const target = evt.target as HTMLElement;
-    this.currentCarousel.set(target);
     Array.from(target.querySelectorAll('img'))
       .filter((i) => !i.classList.contains('btn'))
       .forEach((img) => this.observer!.observe(img as HTMLImageElement));
@@ -153,7 +169,6 @@ export class AppProjectsComponent {
       .filter((i) => !i.classList.contains('btn'))
       .forEach((img) => this.observer?.unobserve(img as HTMLImageElement));
     delete this.observer; // No longer needed
-    this.currentCarousel.set(undefined);
   }
 
   /**
@@ -164,17 +179,11 @@ export class AppProjectsComponent {
   onClick(evt: MouseEvent) {
     const target = evt.target as HTMLElement;
     if (target.closest('#lightbox')) return;
+
     // Get all the images in the post
-    let imgNodes = (this.openedCarousel() || target)
-      .closest('.img-carousel')
-      ?.querySelectorAll('img');
-    if (imgNodes?.length) {
-      const images = Array.from(imgNodes).filter(
-        (i) => !i.classList.contains('btn'),
-      );
-      const currentIndex = images.findIndex((img) =>
-        img.classList.contains('visible'),
-      );
+    let images = this.focusedCarouselImages();
+    if (images?.length) {
+      const currentIndex = this.focusedCarouselImageIndex();
 
       if (target.closest('.prev')) {
         // Previous image is clicked. Scroll to the previous image
