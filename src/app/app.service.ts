@@ -10,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { marked } from 'marked';
 import { firstValueFrom, map } from 'rxjs';
 import { CMSConfig, CMSLinks } from './app.model';
+import { setupMarked } from './shared/marked.config';
 
 /**
  * The main application service will read in the configuration,
@@ -28,27 +29,7 @@ export class AppService {
       this.config.set(config),
     );
 
-    let renderer = new marked.Renderer();
-    let originalListRenderer = renderer.list;
-    renderer.list = function (text, task, checked) {
-      if (/<img.*src=.*>/.test(text)) {
-        return `
-        <div class="img-carousel">
-          <span class="prev">
-            <img class="btn" src="/assets/icons/back.svg" alt="Previous image" />
-          </span>
-          ${originalListRenderer.call(this, text, task, checked)}
-          <span class="next">
-            <img class="btn" src="/assets/icons/next.svg" alt="Next image" />
-          </span>
-        </div>`;
-      } else {
-        return originalListRenderer.call(this, text, task, checked);
-      }
-    };
-
-    // Set the options to use the customized renderer
-    marked.setOptions({ renderer });
+    setupMarked();
   }
 
   /**
@@ -108,6 +89,10 @@ export class AppService {
   loadPost(url: string) {
     return this.http
       .get(`/_posts/${url}`, { responseType: 'text' })
-      .pipe(map((post: string) => marked(post) as string));
+      .pipe(
+        map((post: string) =>
+          this.sec.bypassSecurityTrustHtml(marked(post) as string),
+        ),
+      );
   }
 }

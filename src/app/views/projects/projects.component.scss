@@ -23,6 +23,7 @@
       margin: 1rem 0;
       gap: 1rem;
       grid-template-columns: 5em minmax(0, 1fr);
+      view-transition-name: var(--post-id);
       time {
         border-radius: 50%;
         background-color: var(--section-background-color);
@@ -37,7 +38,7 @@
           content: "";
           position: absolute;
           right: 2.5em;
-          left: -3rem;
+          left: -4rem;
           top: -4px;
           bottom: -4px;
           background-color: var(--body-background-color);

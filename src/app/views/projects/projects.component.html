@@ -18,11 +18,14 @@
 </div>
 
 <section class="timeline">
-  @for (post of timeline(); track post.date) {
+  @for (post of timeline(); track post.publishedDate) {
     @defer (on viewport) {
       <article
         (mouseenter)="watchPost($event)"
         (mouseleave)="unwatchPost($event)"
+        [style]="
+          '--post-id: --project-timeline-' + post.publishedDate.getTime()
+        "
       >
         <span>
           <!-- <time>{{ post.date | date: "yyyy-MM" }}</time> -->

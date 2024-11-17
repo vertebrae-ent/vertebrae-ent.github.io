@@ -117,7 +117,7 @@
       "url": "assets/projects/LS_Final.webp",
       "header": "Liquid State",
       "link": "/projects/liquid-state",
-      "timeline": []
+      "timeline": [{ "fileName": "projects/241101.md", "date": "TBA" }]
     },
     {
       "url": "assets/projects/logo_Fangst_full.svg",
@@ -125,7 +125,6 @@
       "link": "/projects/fangst",
       "timeline": [
         { "fileName": "projects/240101.md", "date": "2024-01" },
-        { "fileName": "projects/240102.md", "date": "2024-02" },
         { "fileName": "projects/240103.md", "date": "TBA" }
       ]
     }
