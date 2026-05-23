@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,18 +27,16 @@ import { AppTooltipDirective } from './shared/tooltip.directive';
  * components in the app can inject it.
  */
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    CommonModule,
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
     RouterModule,
     AppLinkListComponent,
-    AppTooltipDirective,
-  ],
-  providers: [AppService],
+    AppTooltipDirective
+],
+    providers: [AppService]
 })
 export class AppComponent implements OnInit {
   service = inject(AppService);

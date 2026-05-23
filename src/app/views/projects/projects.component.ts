@@ -21,17 +21,16 @@ import { LightboxComponent } from 'src/app/shared/lightbox.component';
 import { AppSectionSocialComponent } from '../home/sections/social.component';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.scss',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    AppSectionSocialComponent,
-    LightboxComponent,
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-projects',
+    templateUrl: './projects.component.html',
+    styleUrl: './projects.component.scss',
+    imports: [
+        CommonModule,
+        RouterModule,
+        AppSectionSocialComponent,
+        LightboxComponent,
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppProjectsComponent {
   service = inject(AppService);

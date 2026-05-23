@@ -3,16 +3,16 @@
  * You can add global styles to this file, and also import other style files
  */
 // The CSS variables used throughout the application
-@import "styles/_variables";
+@use "styles/variables";
 // The font setup
-@import "styles/_fonts";
+@use "styles/fonts";
 // The base styles for the application
-@import "styles/_elements";
-@import "styles/_toothrack";
-@import "styles/_knuckles";
-@import "styles/_tooltip";
+@use "styles/elements";
+@use "styles/toothrack";
+@use "styles/knuckles";
+@use "styles/tooltip";
 // Layout rules
-@import "styles/_layout";
+@use "styles/layout";
 // Custom dialogs
-@import "styles/_dialog";
-@import "styles/_carousel";
+@use "styles/dialog";
+@use "styles/carousel";

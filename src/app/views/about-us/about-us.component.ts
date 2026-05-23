@@ -9,12 +9,11 @@ import { CMSPeople } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
 
 @Component({
-  selector: 'app-about-us',
-  templateUrl: './about-us.component.html',
-  styleUrl: './about-us.component.scss',
-  standalone: true,
-  imports: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-about-us',
+    templateUrl: './about-us.component.html',
+    styleUrl: './about-us.component.scss',
+    imports: [],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppAboutUsComponent {
   service = inject(AppService);

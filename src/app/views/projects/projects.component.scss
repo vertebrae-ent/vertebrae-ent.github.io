@@ -6,10 +6,10 @@
   background-color: var(--grey-color);
   position: relative;
   z-index: -2; // If not, the before psueudo element of time will be hidden
+  color: var(--body-text-color);
   @media screen and (max-width: 980px) {
     min-height: calc(100dvh - 20em);
   }
-  color: var(--body-text-color);
 
   p {
     margin: 2rem var(--text-margin);
