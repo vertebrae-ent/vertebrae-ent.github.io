@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   Component,
   computed,
@@ -12,10 +12,9 @@ import {
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-lightbox',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'app-lightbox',
+    imports: [],
+    template: `
     <dialog
       id="lightbox"
       class="img-carousel"
@@ -31,7 +30,7 @@ import { DomSanitizer } from '@angular/platform-browser';
       </span>
     </dialog>
   `,
-  styles: `
+    styles: `
     :host {
       #lightbox {
         --article-background-color: var(--body-background-color);
@@ -106,7 +105,7 @@ import { DomSanitizer } from '@angular/platform-browser';
         }
       }
     }
-  `,
+  `
 })
 export class LightboxComponent {
   sanitize = inject(DomSanitizer);

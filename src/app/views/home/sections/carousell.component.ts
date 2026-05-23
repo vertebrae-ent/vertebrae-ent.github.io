@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CMSSection, CMSSectionTypeCarousel } from 'src/app/app.model';
@@ -11,14 +11,14 @@ import { AbstractSectionComponent } from './abstract-section.component';
  * the images will be scrolled automatically.
  */
 @Component({
-  selector: 'app-section-carousel',
-  styles: `
+    selector: 'app-section-carousel',
+    styles: `
     :host {
       --color: var(--body-background-color);
       display: block;
     }
   `,
-  template: `
+    template: `
     @if (_section().header) {
       <header [class]="_section().headerPosition">
         <h2>{{ _section().header }}</h2>
@@ -36,9 +36,8 @@ import { AbstractSectionComponent } from './abstract-section.component';
       }
     </div>
   `,
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [RouterModule],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppSectionCarouselComponent extends AbstractSectionComponent<CMSSectionTypeCarousel> {
   @Input() set section(section: CMSSection) {

@@ -1,3 +1,4 @@
+import { provideZoneChangeDetection } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, withViewTransitions } from '@angular/router';
 
@@ -23,17 +24,21 @@ import { AppProjectsComponent } from './app/views/projects/projects.component';
  */
 bootstrapApplication(AppComponent, {
   providers: [
+    provideZoneChangeDetection(),
     provideHttpClient(withInterceptorsFromDi()),
-    provideRouter([
-      // The landing page is the default route
-      { path: '', component: AppHomeComponent },
-      // The about page is available via the `/about` route
-      { path: 'about', component: AppAboutUsComponent },
-      // The projects page is available via the `/projects` route
-      { path: 'projects/:id', component: AppProjectsComponent },
-      { path: 'projects', component: AppProjectsComponent },
-      // Catch all route redirecting to home page
-      { path: '**', redirectTo: '' },
-    ], withViewTransitions({skipInitialTransition: false})),
+    provideRouter(
+      [
+        // The landing page is the default route
+        { path: '', component: AppHomeComponent },
+        // The about page is available via the `/about` route
+        { path: 'about', component: AppAboutUsComponent },
+        // The projects page is available via the `/projects` route
+        { path: 'projects/:id', component: AppProjectsComponent },
+        { path: 'projects', component: AppProjectsComponent },
+        // Catch all route redirecting to home page
+        { path: '**', redirectTo: '' },
+      ],
+      withViewTransitions({ skipInitialTransition: false }),
+    ),
   ],
 }).catch((err) => console.error(err));
