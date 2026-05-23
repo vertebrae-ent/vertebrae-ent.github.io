@@ -1,0 +1,73 @@
+:host {
+  --knuckle-size: 3.4em;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100dvh;
+  width: 100%;
+  .page-width:not(main) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    width: 100%;
+    padding-right: var(--text-margin);
+  }
+  .menu {
+    position: relative;
+    display: flex;
+    place-items: center;
+    @media print {
+      display: none;
+    }
+    > img {
+      width: 3.5em;
+      height: 3.5em;
+      position: relative;
+      z-index: 11;
+      background: transparent;
+      border: 0;
+      opacity: 1;
+      transition: opacity 0.2s ease-in-out;
+    }
+    // Some overrides for the knuckles for the menu button popover
+    .knuckles {
+      position: absolute;
+      width: auto;
+      right: 0;
+      opacity: 0;
+      z-index: 11;
+      top: 0;
+      transform-origin: right center;
+      transform: rotateY(90deg);
+      transition-duration: 0.1s;
+      transition-timing-function: ease-in-out;
+      transition-delay: 200ms;
+      transition-property: opacity, transform;
+      li {
+        padding: 0;
+        background-size: 100%;
+        background-position: 0em;
+        filter: invert(1);
+        position: relative;
+        &:hover {
+          filter: invert(0);
+          z-index: 5;
+          img {
+            translate: 0 1px;
+            scale: 1.12;
+          }
+        }
+        a {
+          padding: 1rem;
+        }
+      }
+    }
+    &:hover {
+      > img {
+        opacity: 0;
+      }
+      .knuckles {
+        opacity: 1;
+        transform: rotateY(0deg);
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+/* ----------------------------------------------------------
+ * Fonts
+ * ----------------------------------------------------------*/
+@font-face {
+  font-family: "Bahnschrift";
+  src: url("/assets/fonts/BAHNSCHRIFT.eot");
+  src: url("/assets/fonts/BAHNSCHRIFT.eot") format("embedded-opentype"),
+    url("/assets/fonts/BAHNSCHRIFT.woff2") format("woff2"),
+    url("/assets/fonts/BAHNSCHRIFT.woff") format("woff"),
+    url("/assets/fonts/BAHNSCHRIFT.ttf") format("truetype");
+}
+
+body {
+  /* Font setup */
+  font-size: clamp(0.813rem, 0.441rem + 1.264vw, 1.25rem);
+  font-family: var(--main-font-family);
+}

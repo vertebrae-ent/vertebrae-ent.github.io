@@ -1,0 +1,29 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
+import { CMSPeople } from 'src/app/app.model';
+import { AppService } from 'src/app/app.service';
+
+@Component({
+  selector: 'app-about-us',
+  templateUrl: './about-us.component.html',
+  styleUrl: './about-us.component.scss',
+  standalone: true,
+  imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class AppAboutUsComponent {
+  service = inject(AppService);
+  config = computed(() => this.service.config().about);
+  selectedPerson = signal<CMSPeople | undefined>(undefined);
+
+  selectPerson(person: CMSPeople) {
+    this.selectedPerson.set(
+      this.selectedPerson() === person ? undefined : person,
+    );
+  }
+}

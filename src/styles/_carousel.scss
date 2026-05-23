@@ -1,0 +1,82 @@
+:root {
+  --carousel-button-gradient-width: 10%;
+  --carousel-margin: 6.5em;
+}
+/**
+ * When we have a markdown post with more than one image displayed in a list,
+ * we can use this carousel to display them in a more interactive way.
+ */
+.img-carousel {
+  position: relative;
+  .prev,
+  .next {
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: var(--carousel-margin);
+    place-content: center;
+    user-select: none;
+    cursor: pointer;
+    > img {
+      pointer-events: none;
+      width: 2em;
+    }
+    &[disabled] > img {
+      filter: grayscale(0.5);
+    }
+    @media print {
+      display: none;
+    }
+  }
+  .prev {
+    left: 0;
+    background: linear-gradient(
+      to right,
+      var(--article-background-color) var(--carousel-button-gradient-width),
+      transparent
+    );
+  }
+  .next {
+    right: 0;
+    background: linear-gradient(
+      to left,
+      var(--article-background-color) var(--carousel-button-gradient-width),
+      transparent
+    );
+  }
+  > ul {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    overflow: auto;
+    gap: 0.5em;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin: 0;
+    @media print {
+      flex-wrap: wrap;
+    }
+    li {
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      @media screen {
+        &:first-child {
+          margin-left: var(--carousel-margin);
+        }
+        &:last-child {
+          margin-right: var(--carousel-margin);
+        }
+      }
+    }
+  }
+  &:not(:has(figure)) {
+    margin: 0 -1em;
+    img {
+      max-height: 22em;
+      @media print {
+        max-height: 15em;
+      }
+    }
+  }
+}

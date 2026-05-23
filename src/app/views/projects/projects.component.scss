@@ -1,0 +1,67 @@
+:host {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  min-height: calc(100dvh - 11rem);
+  padding-top: 2em;
+  background-color: var(--grey-color);
+  position: relative;
+  z-index: -2; // If not, the before psueudo element of time will be hidden
+  @media screen and (max-width: 980px) {
+    min-height: calc(100dvh - 20em);
+  }
+  color: var(--body-text-color);
+
+  p {
+    margin: 2rem var(--text-margin);
+  }
+
+  .timeline {
+    margin: 0 var(--text-margin) 5rem var(--text-margin);
+    article {
+      display: grid;
+      color: var(--section-text-color);
+      margin: 1rem 0;
+      gap: 1rem;
+      grid-template-columns: 5em minmax(0, 1fr);
+      view-transition-name: var(--post-id);
+      time {
+        border-radius: 50%;
+        background-color: var(--section-background-color);
+        width: 5em;
+        height: 5em;
+        display: flex;
+        place-content: center;
+        place-items: center;
+        position: relative;
+        border: 4px solid var(--body-background-color);
+        &::before {
+          content: "";
+          position: absolute;
+          right: 2.5em;
+          left: -4rem;
+          top: -4px;
+          bottom: -4px;
+          background-color: var(--body-background-color);
+          z-index: -1;
+        }
+      }
+      div {
+        background-color: var(--section-background-color);
+        padding: 0 1em;
+      }
+    }
+
+    ::ng-deep {
+      p:has(img) {
+        float: left;
+        img {
+          width: 8em;
+          margin-right: 1em;
+        }
+      }
+      .img-carousel {
+        clear: both;
+      }
+    }
+  }
+}

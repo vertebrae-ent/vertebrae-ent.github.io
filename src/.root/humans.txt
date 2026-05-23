@@ -1,0 +1,13 @@
+// https://humanstxt.org
+
+/* SITE */
+      Web consept and design
+      - Jonas Amundsen Kjosås
+
+      Web development
+      - Øystein Amundsen
+
+      Game developers
+      - Hauk
+      - Åge Markus Eriksen
+

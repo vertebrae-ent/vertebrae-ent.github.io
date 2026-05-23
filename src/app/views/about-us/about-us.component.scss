@@ -1,0 +1,33 @@
+:host {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
+  padding-top: 2em;
+  background-color: var(--grey-color);
+  position: relative;
+  height: 100%;
+  z-index: -2; // If not, the before psueudo element of time will be hidden
+  @media screen and (max-width: 980px) {
+    min-height: calc(100vh - 18em);
+  }
+  color: var(--body-text-color);
+
+  section {
+    > div {
+      display: grid;
+      grid-template-columns: 1fr 15em;
+      grid-template-rows: auto;
+      gap: 1em;
+      > div {
+        padding: 0 var(--text-margin);
+        position: relative;
+        white-space: pre-line;
+        background: var(--body-text-color);
+        color: var(--grey-color);
+        p {
+          white-space: pre-wrap;
+        }
+      }
+    }
+  }
+}

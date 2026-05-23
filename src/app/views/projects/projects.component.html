@@ -1,0 +1,50 @@
+<header>
+  <h1 [routerLink]="['/projects']">Our projects</h1>
+</header>
+
+<!-- Project tabs -->
+<div class="tabs">
+  @for (img of config(); track img.url) {
+    <a
+      [routerLink]="img.link"
+      [attr.aria-label]="img.header || img.text"
+      [ngClass]="{ selected: selected() === img }"
+    >
+      <picture>
+        <img [src]="img.url" [alt]="img.text" />
+      </picture>
+    </a>
+  }
+</div>
+
+<section class="timeline">
+  @for (post of timeline(); track post.publishedDate) {
+    @defer (on viewport) {
+      <article
+        (mouseenter)="watchPost($event)"
+        (mouseleave)="unwatchPost($event)"
+        [style]="
+          '--post-id: --project-timeline-' + post.publishedDate.getTime()
+        "
+      >
+        <span>
+          <!-- <time>{{ post.date | date: "yyyy-MM" }}</time> -->
+          <time>{{ post.date }}</time>
+        </span>
+        <div [innerHTML]="post.content | async"></div>
+      </article>
+    } @placeholder {
+      <article></article>
+    }
+  } @empty {
+    <article>
+      <span>
+        <time><img src="/assets/logo_spinecoil.svg" /></time>
+      </span>
+      <div><p>There are no posts for this project yet.</p></div>
+    </article>
+  }
+</section>
+
+<app-lightbox [(openedImage)]="openedCarousel"></app-lightbox>
+<app-section-social [section]="social()"></app-section-social>
