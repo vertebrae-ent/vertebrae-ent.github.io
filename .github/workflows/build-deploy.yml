@@ -28,7 +28,7 @@ jobs:
       - name: Build
         run: |
           npm install
-          npm run build -- --base-href "https://vertebrae-ent.github.io/"
+          npm run build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
