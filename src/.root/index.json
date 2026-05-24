@@ -2,16 +2,16 @@
   "home": [
     {
       "type": "hero",
-      "backdropImage": "assets/concept/fangstconcept4.webp",
-      "logo": "assets/projects/logo_Fangst_full.svg",
+      "backdropImage": "assets/concept/teknokrat.webp",
+      "logo": "assets/projects/teknokrat.webp",
       "actions": [
         {
           "name": "Learn more",
-          "url": "/projects/fangst"
+          "url": "/projects/teknokrat"
         },
         {
-          "name": "Wishlist",
-          "url": ""
+          "name": "Wishlist on Steam",
+          "url": "https://store.steampowered.com/app/3732260/TEKNOKRAT/"
         }
       ]
     },
@@ -22,12 +22,12 @@
       "class": "toothrack top",
       "images": [
         {
-          "url": "assets/projects/LS_Final.webp",
-          "header": "Liquid State",
-          "link": "/projects/liquid-state"
+          "url": "assets/projects/teknokrat.webp",
+          "header": "TEKNOKRAT",
+          "link": "/projects/teknokrat"
         },
         {
-          "url": "assets/projects/logo_Fangst_full.svg",
+          "url": "assets/projects/logo_Fangst_full.webp",
           "header": "Fangst",
           "link": "/projects/fangst"
         }
@@ -35,8 +35,8 @@
     },
     {
       "type": "text",
-      "header": "We are Vertebrae Entertainment",
-      "text": "People kept telling us that if we wanted to see people like us in games, we should just make them ourselves. \n\nSo we did!",
+      "header": "Ready when you are",
+      "text": "Indie game studio from the heart of Norway, delivering games with the guts to be different and the spine to take pride in it.",
       "class": "toothrack top reverse",
       "actions": [
         {
@@ -57,75 +57,69 @@
       "links": [
         {
           "name": "Discord",
-          "description": "Discussions and more",
+          "description": "Our Discord community",
           "url": "https://discord.gg/b7FpnKtsy3",
           "image": "assets/icons/discord.svg"
         },
         {
-          "name": "Twitter",
-          "description": "Twitter feed",
-          "url": "https://twitter.com/vertebraeent",
+          "name": "Bluesky",
+          "description": "Our Bluesky feed",
+          "url": "https://bsky.app/profile/vertebrae.rip",
           "image": "assets/icons/twitter.svg"
         },
         {
-          "name": "Tumblr",
-          "description": "Our tumblr blog",
-          "url": "https://vertebrae-entertainment.tumblr.com/",
+          "name": "Youtube",
+          "description": "Videos and trailers",
+          "url": "https://www.youtube.com/@vertebraeent",
           "image": "assets/icons/tumblr.svg"
         },
         {
-          "name": "YouTube",
-          "description": "Videos and trailers",
-          "url": "https://www.youtube.com/@vertebraeent",
+          "name": "Itch",
+          "description": "More games",
+          "url": "https://vertebrae-entertainment.itch.io/",
           "image": "assets/icons/youtube.svg"
         },
         {
-          "name": "Mail",
-          "description": "Sign up for our newsletter!",
-          "action": "newsletter",
+          "name": "Steam",
+          "description": "Our Steam page",
+          "url": "https://store.steampowered.com/curator/45719762",
           "image": "assets/icons/mail.svg"
         }
       ]
     }
   ],
   "about": {
-    "header": "We are Vertebrae Entertainment",
-    "description": "People kept telling us that if we wanted to see people like us in games, we should just make them ourselves. \n\nSo we did!",
+    "header": "GAMES MADE WITH PRIDE AND ATTITUDE",
+    "description": "Vertebrae Entertainment is founded on fearless art, and a wish to see people like us take center stage in the games we play. Combining the edgy aesthetics and sharp angles of visual artist Hauk Seim Flåøien with the apocalyptic yet empathetic writing of horror author Åge Markus Schultz, we specialize in LGBT centered political games with story at heart.\n Established in 2016 as part of a school project, Vertebrae Entertainment gained nationwide attention for its dedication and focus on delivering queer stories, as well as our ongoing collaborations with equality and diversity minded projects.",
     "people": [
       {
-        "name": "Hauk",
-        "role": "Game Designer",
+        "name": "Hauk Seim Flåøien",
+        "role": "Artist, Game Designer & Writer",
         "image": "assets/people/hauk.webp",
-        "description": ""
+        "description": "Hauk combines 10+ years of graphic design and illustration experience with 8 years of game development, and is on a near-constant hunt to create art so prickly you'll poke yourself on it."
       },
       {
-        "name": "Åge",
-        "role": "Game Programmer",
+        "name": "Åge Markus Schultz",
+        "role": "Writer & Game Programmer",
         "image": "assets/people/Aage.webp",
-        "description": ""
-      },
-      {
-        "name": "The team",
-        "role": "Team",
-        "image": "assets/people/Team.webp",
-        "description": "This is a team photo"
+        "description": "Åge found humble beginnings within the fan game community, and quickly gained notoriety for their unique horror-genre storytelling. Today they are an award-winning writer with 10 years of game design and programming experience."
       }
     ]
   },
   "projects": [
     {
-      "url": "assets/projects/LS_Final.webp",
-      "header": "Liquid State",
-      "link": "/projects/liquid-state",
-      "timeline": [{ "fileName": "projects/241101.md", "date": "TBA" }]
+      "url": "assets/projects/teknokrat.webp",
+      "header": "TEKNOKRAT",
+      "link": "/projects/teknokrat",
+      "timeline": []
     },
     {
-      "url": "assets/projects/logo_Fangst_full.svg",
+      "url": "assets/projects/logo_Fangst_full.webp",
       "header": "Fangst",
       "link": "/projects/fangst",
       "timeline": [
-        { "fileName": "projects/240101.md", "date": "2024-01" },
-        { "fileName": "projects/240103.md", "date": "TBA" }
+        "projects/240101.md",
+        "projects/240425.md"
       ]
     }
   ],
