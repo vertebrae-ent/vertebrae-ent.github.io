@@ -4,27 +4,31 @@ import { RouterModule } from '@angular/router';
 import { AppService } from '../app.service';
 
 @Component({
-  selector: 'app-linklist',
-  styles: `
+    selector: 'app-linklist',
+    styles: `
     :host {
       display: block;
     }
   `,
-  template: `
+    template: `
     <ul class="links">
-      <li *ngFor="let link of left()">
-        <ng-container
-          *ngTemplateOutlet="anchor; context: { $implicit: link }"
-        ></ng-container>
-      </li>
+      @for (link of left(); track link) {
+        <li>
+          <ng-container
+            *ngTemplateOutlet="anchor; context: { $implicit: link }"
+          ></ng-container>
+        </li>
+      }
       <ng-content></ng-content>
-      <li *ngFor="let link of right()">
-        <ng-container
-          *ngTemplateOutlet="anchor; context: { $implicit: link }"
-        ></ng-container>
-      </li>
+      @for (link of right(); track link) {
+        <li>
+          <ng-container
+            *ngTemplateOutlet="anchor; context: { $implicit: link }"
+          ></ng-container>
+        </li>
+      }
     </ul>
-
+    
     <ng-template #anchor let-link>
       @if (link.isInternal) {
         <a
@@ -32,19 +36,18 @@ import { AppService } from '../app.service';
           [target]="link.target"
           [attr.aria-label]="link.name"
           >{{ link.name }}</a
-        >
-      } @else {
-        <a
-          [href]="link.url"
-          [target]="link.target"
-          [attr.aria-label]="link.name"
-          >{{ link.name }}</a
-        >
-      }
-    </ng-template>
-  `,
-  standalone: true,
-  imports: [CommonModule, RouterModule],
+          >
+        } @else {
+          <a
+            [href]="link.url"
+            [target]="link.target"
+            [attr.aria-label]="link.name"
+            >{{ link.name }}</a
+            >
+          }
+        </ng-template>
+    `,
+    imports: [CommonModule, RouterModule]
 })
 export class AppLinkListComponent {
   service = inject(AppService);

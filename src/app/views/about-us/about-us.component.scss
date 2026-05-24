@@ -7,10 +7,10 @@
   position: relative;
   height: 100%;
   z-index: -2; // If not, the before psueudo element of time will be hidden
+  color: var(--body-text-color);
   @media screen and (max-width: 980px) {
     min-height: calc(100vh - 18em);
   }
-  color: var(--body-text-color);
 
   section {
     > div {

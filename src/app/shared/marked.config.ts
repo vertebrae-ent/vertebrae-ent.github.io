@@ -19,20 +19,25 @@ export function setupMarked() {
   marked.use({
     renderer: {
       // Override for list renderer to create our carousel.
-      list(body: string, ordered: boolean, start: number | '') {
-        if (/^(<li><img src="[^"]+" alt="[^"]+"><\/li>\n?)+$/gm.test(body)) {
+      list(token: Tokens.List) {
+        const body = originalListRenderer.call(this, token);
+        if (
+          /^<ul>\s*(<li><img src="[^"]+" alt="[^"]+"><\/li>\s*)+<\/ul>\s*$/.test(
+            body.trim(),
+          )
+        ) {
           return `
           <div class="img-carousel">
             <span class="prev">
               <img class="btn" src="/assets/icons/back.svg" alt="Previous image" />
             </span>
-            ${originalListRenderer.call(this, body, ordered, start)}
+            ${body}
             <span class="next">
               <img class="btn" src="/assets/icons/next.svg" alt="Next image" />
             </span>
           </div>`;
         }
-        return originalListRenderer.call(this, body, ordered, start);
+        return body;
       },
     },
     extensions: [

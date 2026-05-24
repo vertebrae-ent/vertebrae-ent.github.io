@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CMSSection, CMSSectionTypeHero } from 'src/app/app.model';
@@ -10,8 +10,8 @@ import { AbstractSectionComponent } from './abstract-section.component';
  * There should only be one hero section.
  */
 @Component({
-  selector: 'app-section-hero',
-  styles: `
+    selector: 'app-section-hero',
+    styles: `
     :host {
       padding-bottom: 0;
     }
@@ -39,7 +39,7 @@ import { AbstractSectionComponent } from './abstract-section.component';
       }
     }
   `,
-  template: `
+    template: `
     <picture>
       <img
         class="backdrop"
@@ -74,9 +74,8 @@ import { AbstractSectionComponent } from './abstract-section.component';
       </div>
     </picture>
   `,
-  standalone: true,
-  imports: [CommonModule, RouterModule, NgOptimizedImage],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [RouterModule, NgOptimizedImage],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppSectionHeroComponent extends AbstractSectionComponent<CMSSectionTypeHero> {
   @Input() set section(section: CMSSection) {

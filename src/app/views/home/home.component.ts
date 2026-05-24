@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,18 +15,16 @@ import { AppSectionTextComponent } from './sections/text.component';
  * Renders the main landing page.
  */
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.component.html',
-  styleUrls: ['home.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
+    selector: 'app-home',
+    templateUrl: 'home.component.html',
+    styleUrls: ['home.component.scss'],
+    imports: [
     AppSectionHeroComponent,
     AppSectionCarouselComponent,
     AppSectionSocialComponent,
-    AppSectionTextComponent,
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    AppSectionTextComponent
+],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppHomeComponent {
   service = inject(AppService);
