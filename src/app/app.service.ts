@@ -53,13 +53,13 @@ export class AppService {
             ? this.sec.bypassSecurityTrustUrl(l.url)
             : l.url;
         }
-        if (l.action) {
-          switch (l.action) {
-            case 'newsletter':
-              l.safeAction = this.showNewsLetterDialog.bind(this);
-              break;
-          }
-        }
+        // if (l.action) {
+        //   switch (l.action) {
+        //     case 'newsletter':
+        //       l.safeAction = this.showNewsLetterDialog.bind(this);
+        //       break;
+        //   }
+        // }
         return l;
       }) ?? []
     );
@@ -75,10 +75,10 @@ export class AppService {
    * seen the dialog. This flag will be removed if the user explicitly clicks the newsletter
    * icon in the footer, in order to show the dialog again.
    */
-  showNewsLetterDialog() {
-    localStorage.removeItem('newsNagDone');
-    this.showNewsLetterDialog$.emit('user-requested');
-  }
+  // showNewsLetterDialog() {
+  //   localStorage.removeItem('newsNagDone');
+  //   this.showNewsLetterDialog$.emit('user-requested');
+  // }
 
   /**
    * Load one post from the `./src/.root/_posts` folder, convert it from markdown to html

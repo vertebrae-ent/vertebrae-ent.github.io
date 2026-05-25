@@ -1,4 +1,3 @@
-
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,24 +26,20 @@ import { AppTooltipDirective } from './shared/tooltip.directive';
  * components in the app can inject it.
  */
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-    RouterModule,
-    AppLinkListComponent,
-    AppTooltipDirective
-],
-    providers: [AppService]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterModule, AppLinkListComponent, AppTooltipDirective],
+  providers: [AppService],
 })
 export class AppComponent implements OnInit {
   service = inject(AppService);
 
   @HostBinding('class') className = 'app-root';
 
-  modal = viewChild<ElementRef<HTMLDialogElement>>('nagModal');
-  userRequestedNag = signal(false);
+  // modal = viewChild<ElementRef<HTMLDialogElement>>('nagModal');
+  // userRequestedNag = signal(false);
 
   openedAt = -1;
   social = computed(() => {
@@ -64,9 +59,9 @@ export class AppComponent implements OnInit {
    * Component initializer.
    */
   ngOnInit(): void {
-    this.service.showNewsLetterDialog$.subscribe((val) =>
-      this.openNagDialog(undefined, true),
-    );
+    // this.service.showNewsLetterDialog$.subscribe((val) =>
+    //   this.openNagDialog(undefined, true),
+    // );
   }
 
   runAction(link: CMSLinks) {
@@ -77,54 +72,54 @@ export class AppComponent implements OnInit {
     }
   }
 
-  /**
-   * Close the dialog if the user clicks outside of it.
-   * @param event
-   */
-  @HostListener('click', ['$event'])
-  onClick(event: MouseEvent) {
-    const now = performance.now(); // Must check the time, because the click event is fired before the dialog is opened
-    if (this.modal()?.nativeElement?.open && now - this.openedAt > 100) {
-      var rect = this.modal()!.nativeElement.getBoundingClientRect();
-      var isInDialog =
-        rect.top <= event.clientY &&
-        event.clientY <= rect.top + rect.height &&
-        rect.left <= event.clientX &&
-        event.clientX <= rect.left + rect.width;
-      if (!isInDialog) {
-        this.closeNagDialog();
-      }
-    }
-  }
+  //   /**
+  //    * Close the dialog if the user clicks outside of it.
+  //    * @param event
+  //    */
+  //   @HostListener('click', ['$event'])
+  //   onClick(event: MouseEvent) {
+  //     const now = performance.now(); // Must check the time, because the click event is fired before the dialog is opened
+  //     if (this.modal()?.nativeElement?.open && now - this.openedAt > 100) {
+  //       var rect = this.modal()!.nativeElement.getBoundingClientRect();
+  //       var isInDialog =
+  //         rect.top <= event.clientY &&
+  //         event.clientY <= rect.top + rect.height &&
+  //         rect.left <= event.clientX &&
+  //         event.clientX <= rect.left + rect.width;
+  //       if (!isInDialog) {
+  //         this.closeNagDialog();
+  //       }
+  //     }
+  //   }
 
-  /**
-   * Show the newsletter nag dialog.
-   *
-   * @param event an optional `visibilitychange` event, if the user is blurs the page
-   * @param requested if `true`, the user has explicitly requested the dialog
-   * @returns
-   */
-  // @HostListener('window:beforeunload', ['$event'])
-  @HostListener('document:visibilitychange', ['$event'])
-  openNagDialog(event?: Event, requested = false) {
-    this.userRequestedNag.set(requested);
-    if (localStorage.getItem('newsNagDone') == null) {
-      // User has not accepted nor rejected the newsletter thingy
-      // Show nag-dialog
-      if (event != null) event.preventDefault();
-      this.modal()!.nativeElement.showModal();
-      this.openedAt = performance.now();
-      return true;
-    }
-    return false;
-  }
+  //   /**
+  //    * Show the newsletter nag dialog.
+  //    *
+  //    * @param event an optional `visibilitychange` event, if the user is blurs the page
+  //    * @param requested if `true`, the user has explicitly requested the dialog
+  //    * @returns
+  //    */
+  //   // @HostListener('window:beforeunload', ['$event'])
+  //   @HostListener('document:visibilitychange', ['$event'])
+  //   openNagDialog(event?: Event, requested = false) {
+  //     this.userRequestedNag.set(requested);
+  //     if (localStorage.getItem('newsNagDone') == null) {
+  //       // User has not accepted nor rejected the newsletter thingy
+  //       // Show nag-dialog
+  //       if (event != null) event.preventDefault();
+  //       this.modal()!.nativeElement.showModal();
+  //       this.openedAt = performance.now();
+  //       return true;
+  //     }
+  //     return false;
+  //   }
 
-  /**
-   * Close the newsletter nag dialog.
-   */
-  closeNagDialog() {
-    localStorage.setItem('newsNagDone', 'true');
-    this.modal()!.nativeElement.close();
-    console.log('Canceled!');
-  }
+  //   /**
+  //    * Close the newsletter nag dialog.
+  //    */
+  //   closeNagDialog() {
+  //     localStorage.setItem('newsNagDone', 'true');
+  //     this.modal()!.nativeElement.close();
+  //     console.log('Canceled!');
+  //   }
 }
