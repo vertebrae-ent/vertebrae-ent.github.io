@@ -27,7 +27,7 @@
           "link": "/projects/teknokrat"
         },
         {
-          "url": "assets/projects/logo_Fangst_full.webp",
+          "url": "assets/projects/logo_Fangst_full.svg",
           "header": "Fangst",
           "link": "/projects/fangst"
         }
@@ -65,25 +65,25 @@
           "name": "Bluesky",
           "description": "Our Bluesky feed",
           "url": "https://bsky.app/profile/vertebrae.rip",
-          "image": "assets/icons/twitter.svg"
+          "image": "assets/icons/bluesky.svg"
         },
         {
           "name": "Youtube",
           "description": "Videos and trailers",
           "url": "https://www.youtube.com/@vertebraeent",
-          "image": "assets/icons/tumblr.svg"
+          "image": "assets/icons/youtube.svg"
         },
         {
           "name": "Itch",
           "description": "More games",
           "url": "https://vertebrae-entertainment.itch.io/",
-          "image": "assets/icons/youtube.svg"
+          "image": "assets/icons/itch.svg"
         },
         {
           "name": "Steam",
           "description": "Our Steam page",
           "url": "https://store.steampowered.com/curator/45719762",
-          "image": "assets/icons/mail.svg"
+          "image": "assets/icons/steam.svg"
         }
       ]
     }
@@ -101,7 +101,7 @@
       {
         "name": "Åge Markus Schultz",
         "role": "Writer & Game Programmer",
-        "image": "assets/people/Aage.webp",
+        "image": "assets/people/aage.webp",
         "description": "Åge found humble beginnings within the fan game community, and quickly gained notoriety for their unique horror-genre storytelling. Today they are an award-winning writer with 10 years of game design and programming experience."
       }
     ]
