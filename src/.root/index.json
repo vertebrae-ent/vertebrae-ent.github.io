@@ -2,7 +2,7 @@
   "home": [
     {
       "type": "hero",
-      "backdropImage": "assets/concept/teknokrat.webp",
+      "backdropImage": "assets/concept/teknokratweb.webp",
       "logo": "assets/projects/teknokrat.webp",
       "actions": [
         {
@@ -36,7 +36,7 @@
     {
       "type": "text",
       "header": "Ready when you are",
-      "text": "Indie game studio from the heart of Norway, delivering games with the guts to be different and the spine to take pride in it.",
+      "text": "norwegian gamedev duo making edgy queer games",
       "class": "toothrack top reverse",
       "actions": [
         {
@@ -90,19 +90,19 @@
   ],
   "about": {
     "header": "GAMES MADE WITH PRIDE AND ATTITUDE",
-    "description": "Vertebrae Entertainment is founded on fearless art, and a wish to see people like us take center stage in the games we play. Combining the edgy aesthetics and sharp angles of visual artist Hauk Seim Flåøien with the apocalyptic yet empathetic writing of horror author Åge Markus Schultz, we specialize in LGBT centered political games with story at heart.\n Established in 2016 as part of a school project, Vertebrae Entertainment gained nationwide attention for its dedication and focus on delivering queer stories, as well as our ongoing collaborations with equality and diversity minded projects.",
+    "description": "We first started making games together as a school project in 2016. Back then, we lived in a world where a want for queer narratives in games were met with a repeat statement: \n \n<i>“If you want to see it, make it yourself.</i>”\n \nWhatever! Take that and double down, and that’s where you’ll find Vertebrae Entertainment. We’re not satisfied with existence. We live and breathe to deliver the edgy shit- bold, timeless, deeply personal impressions that stay with you well after the credits roll.\n\nMilling about lakeside in Hamar, Norway. Proud members of game development cluster GameDev Syndicate. Shoot us an email if you wanna link up.\n\nCan you feel it? Your spine wanting to break free? \n\n<b>GET IN TOUCH!</b>\n contact@vertebrae.rip",
     "people": [
       {
-        "name": "Hauk Seim Flåøien",
-        "role": "Artist, Game Designer & Writer",
+        "name": "",
+        "role": "",
         "image": "assets/people/hauk.webp",
-        "description": "Hauk combines 10+ years of graphic design and illustration experience with 8 years of game development, and is on a near-constant hunt to create art so prickly you'll poke yourself on it."
+        "description": "<b>NAME:</b> Hauk Seim Flåøien\n<b>PRONOUNS:</b> he/him\n<b>ROLE:</b> The Art Guy™, writer, music when the planets align, technically the CEO\n<b>PASSION:</b> skeletons and tits\n<b>FACT:</b> bad at math\n\ngamedev since 2016, making techno music since 2012, illustrating since 2010, drawing weird shit since birth. you be the judge whether i’m good at it\n\n<b>CONTACT:</b> hauk@vertebrae.rip\n"
       },
       {
-        "name": "Åge Markus Schultz",
-        "role": "Writer & Game Programmer",
+        "name": "",
+        "role": "",
         "image": "assets/people/aage.webp",
-        "description": "Åge found humble beginnings within the fan game community, and quickly gained notoriety for their unique horror-genre storytelling. Today they are an award-winning writer with 10 years of game design and programming experience."
+        "description": "<b>NAME:</b> Åge Markus Schultz\n<b>PRONOUNS:</b> they/them\n<b>ROLE:</b> Game designer, programmer, writer, does some admin stuff, thank you åge\n<b>PASSION:</b> hotline miami 2, online drama and weird shit\n<b>FACT:</b> used to be scared of the hadron collider\n\none day you’ll see. you’ll all see!!!!\n\n<b>CONTACT:</b> aage@vertebrae.rip\n"
       }
     ]
   },
