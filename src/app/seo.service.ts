@@ -50,7 +50,7 @@ export class SeoService {
       this.setMeta({
         title: this.siteName,
         description: config?.home?.['og:description']?.trim() || this.slogan,
-        image: this.defaultImage,
+        image: config?.home?.['og:image'] || this.defaultImage,
         url: '/',
       });
       return;
@@ -60,7 +60,7 @@ export class SeoService {
       this.setMeta({
         title: this.buildTitle(config?.about?.['og:title']),
         description: config?.about?.['og:description']?.trim() || this.slogan,
-        image: this.defaultImage,
+        image: config?.about?.['og:image'] || this.defaultImage,
         url: path,
       });
       return;
@@ -71,7 +71,7 @@ export class SeoService {
         title: this.buildTitle(config?.projects?.['og:title']),
         description:
           config?.projects?.['og:description']?.trim() || this.slogan,
-        image: this.defaultImage,
+        image: config?.projects?.['og:image'] || this.defaultImage,
         url: path,
       });
       return;
@@ -91,7 +91,8 @@ export class SeoService {
             project['og:description']?.trim() ||
             `${project.header} by ${this.siteName}.`,
           image:
-            typeof project.url === 'string' ? project.url : this.defaultImage,
+            project['og:image'] ||
+            (typeof project.url === 'string' ? project.url : this.defaultImage),
           url: path,
         });
         return;

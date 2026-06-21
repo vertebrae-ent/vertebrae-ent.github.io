@@ -5,6 +5,7 @@ import { SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
  */
 export interface CMSPage<T> {
   'og:title'?: string;
+  'og:image'?: string;
   'og:description': string;
   content: T[];
 }
@@ -161,6 +162,7 @@ export interface CMSLinks {
 
 export interface CMSProjects extends CMSImage {
   'og:title'?: string;
+  'og:image'?: string;
   'og:description': string;
   timeline: CMSProjectPost[];
   _parsed?: string;
@@ -175,6 +177,7 @@ export interface CMSAbout {
   header: string;
   description: string;
   'og:title'?: string;
+  'og:image'?: string;
   'og:description': string;
   people: CMSPeople[];
 }

@@ -120,6 +120,7 @@
         "header": "TEKNOKRAT",
         "og:title": "TEKNOKRAT | Projects",
         "og:description": "",
+        "og:image": "assets/projects/teknokrat.webp",
         "link": "/projects/teknokrat",
         "timeline": []
       },
@@ -128,6 +129,7 @@
         "header": "Fangst",
         "og:title": "Fangst | Projects",
         "og:description": "",
+        "og:image": "assets/projects/logo_Fangst_full.svg",
         "link": "/projects/fangst",
         "timeline": [
           { "fileName": "projects/240101.md", "date": "2024-01" },
