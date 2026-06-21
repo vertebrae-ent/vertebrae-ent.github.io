@@ -3,11 +3,13 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Attach to Chrome",
+      "name": "DebugChrome",
       "port": 4200,
-      "request": "attach",
+      "request": "launch",
+      "url": "http://localhost:4200",
       "type": "chrome",
-      "webRoot": "${workspaceFolder}"
+      "webRoot": "${workspaceFolder}",
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
     },
     {
       "name": "ng serve",
