@@ -15,7 +15,7 @@
   section {
     > div {
       display: grid;
-      grid-template-columns: 1fr 15em;
+      grid-template-columns: 1fr min(15rem, 30vw);
       grid-template-rows: auto;
       gap: 1em;
       > div {
@@ -29,5 +29,8 @@
         }
       }
     }
+  }
+  .photo img {
+    width: stretch;
   }
 }
