@@ -21,16 +21,16 @@ import { LightboxComponent } from 'src/app/shared/lightbox.component';
 import { AppSectionSocialComponent } from '../home/sections/social.component';
 
 @Component({
-    selector: 'app-projects',
-    templateUrl: './projects.component.html',
-    styleUrl: './projects.component.scss',
-    imports: [
-        CommonModule,
-        RouterModule,
-        AppSectionSocialComponent,
-        LightboxComponent,
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-projects',
+  templateUrl: './projects.component.html',
+  styleUrl: './projects.component.scss',
+  imports: [
+    CommonModule,
+    RouterModule,
+    AppSectionSocialComponent,
+    LightboxComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppProjectsComponent {
   service = inject(AppService);
@@ -61,12 +61,14 @@ export class AppProjectsComponent {
   popover = viewChild.required<ElementRef<any>>('lightbox');
 
   // The config for this page
-  config = computed(() => this.service.config().projects);
+  config = computed(() => this.service.config().projects.content);
   // The social section
   social = computed(() => {
-    return !Array.isArray(this.service.config()?.home)
+    return !Array.isArray(this.service.config()?.home?.content)
       ? ({} as CMSSectionTypeSocial)
-      : this.service.config().home.filter((s) => s.type === 'social')[0];
+      : this.service
+          .config()
+          .home.content.filter((s) => s.type === 'social')[0];
   });
 
   // Fetch the selected project from the route

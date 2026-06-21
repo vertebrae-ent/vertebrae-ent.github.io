@@ -40,13 +40,15 @@ export class AppComponent implements OnInit {
 
   openedAt = -1;
   social = computed(() => {
-    if (!Array.isArray(this.service.config()?.home)) {
+    if (!Array.isArray(this.service.config()?.home?.content)) {
       return {} as CMSSectionTypeSocial;
     }
     const config = structuredClone(
       this.service
         .config()
-        .home.filter((s) => s.type === 'social')[0] as CMSSectionTypeSocial,
+        .home.content.filter(
+          (s) => s.type === 'social',
+        )[0] as CMSSectionTypeSocial,
     );
     config.links = this.service.toSafeList(config.links);
     return config;

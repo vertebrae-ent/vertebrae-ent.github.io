@@ -49,7 +49,7 @@ export class SeoService {
     if (path === '/') {
       this.setMeta({
         title: this.siteName,
-        description: this.slogan,
+        description: config?.home?.['og:description']?.trim() || this.slogan,
         image: this.defaultImage,
         url: '/',
       });
@@ -57,13 +57,9 @@ export class SeoService {
     }
 
     if (path === '/about') {
-      const aboutHeader = config?.about?.header?.trim() || 'About Us';
-      const aboutDescription =
-        this.cleanText(config?.about?.description) || this.slogan;
-
       this.setMeta({
-        title: `${aboutHeader} | ${this.siteName}`,
-        description: aboutDescription,
+        title: this.buildTitle(config?.about?.['og:title']),
+        description: config?.about?.['og:description']?.trim() || this.slogan,
         image: this.defaultImage,
         url: path,
       });
@@ -71,14 +67,10 @@ export class SeoService {
     }
 
     if (path === '/projects') {
-      const projectsHeader =
-        config?.home
-          ?.find((section) => section.type === 'carousel')
-          ?.header?.trim() || 'Our projects';
-
       this.setMeta({
-        title: `${projectsHeader} | ${this.siteName}`,
-        description: this.slogan,
+        title: this.buildTitle(config?.projects?.['og:title']),
+        description:
+          config?.projects?.['og:description']?.trim() || this.slogan,
         image: this.defaultImage,
         url: path,
       });
@@ -88,14 +80,16 @@ export class SeoService {
     const projectMatch = path.match(/^\/projects\/([^/]+)$/);
     if (projectMatch?.[1]) {
       const id = projectMatch[1];
-      const project = config?.projects?.find(
+      const project = config?.projects?.content?.find(
         (entry) => this.normalizePath(entry.link) === `/projects/${id}`,
       );
 
       if (project) {
         this.setMeta({
-          title: `${project.header} | ${this.siteName}`,
-          description: `${project.header} by ${this.siteName}.`,
+          title: this.buildTitle(project['og:title']),
+          description:
+            project['og:description']?.trim() ||
+            `${project.header} by ${this.siteName}.`,
           image:
             typeof project.url === 'string' ? project.url : this.defaultImage,
           url: path,
@@ -134,6 +128,12 @@ export class SeoService {
     this.updateNameTag('twitter:title', meta.title);
     this.updateNameTag('twitter:description', meta.description);
     this.updateNameTag('twitter:image', imageUrl);
+  }
+
+  private buildTitle(ogTitle?: string) {
+    return ogTitle?.trim()
+      ? `${ogTitle.trim()} | ${this.siteName}`
+      : this.siteName;
   }
 
   private updateNameTag(name: string, content: string) {

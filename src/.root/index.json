@@ -1,96 +1,101 @@
 {
-  "home": [
-    {
-      "type": "hero",
-      "backdropImage": "assets/concept/teknokratweb.webp",
-      "logo": "assets/projects/teknokrat.webp",
-      "actions": [
-        {
-          "name": "Learn more",
-          "url": "/projects/teknokrat"
-        },
-        {
-          "name": "Wishlist on Steam",
-          "url": "https://store.steampowered.com/app/3732260/TEKNOKRAT/"
+  "home": {
+    "og:description": "Norwegian gamedev duo making edgy queer games",
+    "content": [
+      {
+        "type": "hero",
+        "backdropImage": "assets/concept/teknokratweb.webp",
+        "logo": "assets/projects/teknokrat.webp",
+        "actions": [
+          {
+            "name": "Learn more",
+            "url": "/projects/teknokrat"
+          },
+          {
+            "name": "Wishlist on Steam",
+            "url": "https://store.steampowered.com/app/3732260/TEKNOKRAT/"
+          }
+        ]
+      },
+      {
+        "type": "carousel",
+        "header": "Our projects",
+        "headerPosition": "right",
+        "class": "toothrack top",
+        "images": [
+          {
+            "url": "assets/projects/teknokrat.webp",
+            "header": "TEKNOKRAT",
+            "link": "/projects/teknokrat"
+          },
+          {
+            "url": "assets/projects/logo_Fangst_full.svg",
+            "header": "Fangst",
+            "link": "/projects/fangst"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "header": "Ready when you are",
+        "text": "norwegian gamedev duo making edgy queer games",
+        "class": "toothrack top reverse",
+        "actions": [
+          {
+            "name": "About us",
+            "url": "/about"
+          }
+        ],
+        "image": {
+          "position": "after",
+          "url": "assets/asset_slogan.svg"
         }
-      ]
-    },
-    {
-      "type": "carousel",
-      "header": "Our projects",
-      "headerPosition": "right",
-      "class": "toothrack top",
-      "images": [
-        {
-          "url": "assets/projects/teknokrat.webp",
-          "header": "TEKNOKRAT",
-          "link": "/projects/teknokrat"
-        },
-        {
-          "url": "assets/projects/logo_Fangst_full.svg",
-          "header": "Fangst",
-          "link": "/projects/fangst"
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "header": "Ready when you are",
-      "text": "norwegian gamedev duo making edgy queer games",
-      "class": "toothrack top reverse",
-      "actions": [
-        {
-          "name": "About us",
-          "url": "/about"
-        }
-      ],
-      "image": {
-        "position": "after",
-        "url": "assets/asset_slogan.svg"
+      },
+      {
+        "type": "social",
+        "header": "Get in touch",
+        "headerPosition": "right",
+        "class": "toothrack top",
+        "links": [
+          {
+            "name": "Discord",
+            "description": "Our Discord community",
+            "url": "https://discord.gg/b7FpnKtsy3",
+            "image": "assets/icons/discord.svg"
+          },
+          {
+            "name": "Bluesky",
+            "description": "Our Bluesky feed",
+            "url": "https://bsky.app/profile/vertebrae.rip",
+            "image": "assets/icons/bluesky.svg"
+          },
+          {
+            "name": "Youtube",
+            "description": "Videos and trailers",
+            "url": "https://www.youtube.com/@vertebraeent",
+            "image": "assets/icons/youtube.svg"
+          },
+          {
+            "name": "Itch",
+            "description": "More games",
+            "url": "https://vertebrae-entertainment.itch.io/",
+            "image": "assets/icons/itch.svg"
+          },
+          {
+            "name": "Steam",
+            "description": "Our Steam page",
+            "url": "https://store.steampowered.com/curator/45719762",
+            "image": "assets/icons/steam.svg"
+          }
+        ]
       }
-    },
-    {
-      "type": "social",
-      "header": "Get in touch",
-      "headerPosition": "right",
-      "class": "toothrack top",
-      "links": [
-        {
-          "name": "Discord",
-          "description": "Our Discord community",
-          "url": "https://discord.gg/b7FpnKtsy3",
-          "image": "assets/icons/discord.svg"
-        },
-        {
-          "name": "Bluesky",
-          "description": "Our Bluesky feed",
-          "url": "https://bsky.app/profile/vertebrae.rip",
-          "image": "assets/icons/bluesky.svg"
-        },
-        {
-          "name": "Youtube",
-          "description": "Videos and trailers",
-          "url": "https://www.youtube.com/@vertebraeent",
-          "image": "assets/icons/youtube.svg"
-        },
-        {
-          "name": "Itch",
-          "description": "More games",
-          "url": "https://vertebrae-entertainment.itch.io/",
-          "image": "assets/icons/itch.svg"
-        },
-        {
-          "name": "Steam",
-          "description": "Our Steam page",
-          "url": "https://store.steampowered.com/curator/45719762",
-          "image": "assets/icons/steam.svg"
-        }
-      ]
-    }
-  ],
+    ]
+  },
   "about": {
     "header": "GAMES MADE WITH PRIDE AND ATTITUDE",
     "description": "We first started making games together as a school project in 2016. Back then, we lived in a world where a want for queer narratives in games were met with a repeat statement: \n \n<i>“If you want to see it, make it yourself.</i>”\n \nWhatever! Take that and double down, and that’s where you’ll find Vertebrae Entertainment. We’re not satisfied with existence. We live and breathe to deliver the edgy shit- bold, timeless, deeply personal impressions that stay with you well after the credits roll.\n\nMilling about lakeside in Hamar, Norway. Proud members of game development cluster GameDev Syndicate. Shoot us an email if you wanna link up.\n\nCan you feel it? Your spine wanting to break free? \n\n",
+    "og:title": "About us",
+    "og:description": "",
     "people": [
       {
         "name": "",
@@ -106,23 +111,31 @@
       }
     ]
   },
-  "projects": [
-    {
-      "url": "assets/projects/teknokrat.webp",
-      "header": "TEKNOKRAT",
-      "link": "/projects/teknokrat",
-      "timeline": []
-    },
-    {
-      "url": "assets/projects/logo_Fangst_full.svg",
-      "header": "Fangst",
-      "link": "/projects/fangst",
-      "timeline": [
-       { "fileName": "projects/240101.md", "date": "2024-01" },
-       { "fileName": "projects/240425.md", "date": "TBA" }
-      ]
-    }
-  ],
+  "projects": {
+    "og:title": "Projects",
+    "og:description": "Our games",
+    "content": [
+      {
+        "url": "assets/projects/teknokrat.webp",
+        "header": "TEKNOKRAT",
+        "og:title": "TEKNOKRAT | Projects",
+        "og:description": "",
+        "link": "/projects/teknokrat",
+        "timeline": []
+      },
+      {
+        "url": "assets/projects/logo_Fangst_full.svg",
+        "header": "Fangst",
+        "og:title": "Fangst | Projects",
+        "og:description": "",
+        "link": "/projects/fangst",
+        "timeline": [
+          { "fileName": "projects/240101.md", "date": "2024-01" },
+          { "fileName": "projects/240425.md", "date": "TBA" }
+        ]
+      }
+    ]
+  },
   "linkList": [
     {
       "name": "About us",

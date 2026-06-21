@@ -1,4 +1,3 @@
-
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,21 +14,21 @@ import { AppSectionTextComponent } from './sections/text.component';
  * Renders the main landing page.
  */
 @Component({
-    selector: 'app-home',
-    templateUrl: 'home.component.html',
-    styleUrls: ['home.component.scss'],
-    imports: [
+  selector: 'app-home',
+  templateUrl: 'home.component.html',
+  styleUrls: ['home.component.scss'],
+  imports: [
     AppSectionHeroComponent,
     AppSectionCarouselComponent,
     AppSectionSocialComponent,
-    AppSectionTextComponent
-],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    AppSectionTextComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppHomeComponent {
   service = inject(AppService);
 
-  sections = computed(() => this.service.config().home);
+  sections = computed(() => this.service.config().home.content);
 
   links = computed(() =>
     this.service.toSafeList(this.service.config().linkList),

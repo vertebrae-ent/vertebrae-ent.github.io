@@ -25,7 +25,7 @@ export const serverRoutes: ServerRoute[] = [
       const config = JSON.parse(indexContent);
 
       // Extract project IDs from project links
-      return config.projects.map((project: any) => {
+      return config.projects.content.map((project: any) => {
         const id = project.link.split('/').pop(); // /projects/teknokrat -> teknokrat
         return { id };
       });

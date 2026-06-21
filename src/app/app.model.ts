@@ -1,15 +1,24 @@
 import { SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 /**
+ * Page-level Open Graph + content wrapper for array-backed pages.
+ */
+export interface CMSPage<T> {
+  'og:title'?: string;
+  'og:description': string;
+  content: T[];
+}
+
+/**
  * The main configuration model for the app
  */
 export interface CMSConfig {
   /** The frontpage sections*/
-  home: CMSSection[];
+  home: CMSPage<CMSSection>;
   /** About page */
   about: CMSAbout;
   /** Blog articles */
-  projects: CMSProjects[];
+  projects: CMSPage<CMSProjects>;
   /** Footer links */
   linkList: CMSLinks[];
 }
@@ -151,6 +160,8 @@ export interface CMSLinks {
 }
 
 export interface CMSProjects extends CMSImage {
+  'og:title'?: string;
+  'og:description': string;
   timeline: CMSProjectPost[];
   _parsed?: string;
 }
@@ -163,6 +174,8 @@ export interface CMSProjectPost {
 export interface CMSAbout {
   header: string;
   description: string;
+  'og:title'?: string;
+  'og:description': string;
   people: CMSPeople[];
 }
 
