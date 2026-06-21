@@ -1,4 +1,3 @@
-
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CMSLinks, CMSSection, CMSSectionTypeSocial } from 'src/app/app.model';
 import { AppTooltipDirective } from 'src/app/shared/tooltip.directive';
@@ -9,8 +8,8 @@ import { AbstractSectionComponent } from './abstract-section.component';
  * A social section contains a list of links to social media.
  */
 @Component({
-    selector: 'app-section-social',
-    styles: `
+  selector: 'app-section-social',
+  styles: `
     :host {
       --color: var(--accent-color);
       --knuckle-size: 11.1%;
@@ -28,7 +27,7 @@ import { AbstractSectionComponent } from './abstract-section.component';
       }
     }
   `,
-    template: `
+  template: `
     <header [class]="_section().headerPosition">
       <h2>{{ _section().header }}</h2>
     </header>
@@ -58,8 +57,8 @@ import { AbstractSectionComponent } from './abstract-section.component';
       </ul>
     </div>
   `,
-    imports: [AppTooltipDirective],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  imports: [AppTooltipDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppSectionSocialComponent extends AbstractSectionComponent<CMSSectionTypeSocial> {
   @Input() set section(section: CMSSection) {
@@ -73,7 +72,7 @@ export class AppSectionSocialComponent extends AbstractSectionComponent<CMSSecti
 
   runAction(link: CMSLinks) {
     try {
-      link.safeAction();
+      link.safeAction?.();
     } catch (ex) {
       console.log(ex);
     }

@@ -1,4 +1,3 @@
-
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CMSSection, CMSSectionTypeText } from 'src/app/app.model';
@@ -9,8 +8,8 @@ import { AbstractSectionComponent } from './abstract-section.component';
  * A text section contains a header, a text and an optional image.
  */
 @Component({
-    selector: 'app-section-text',
-    styles: `
+  selector: 'app-section-text',
+  styles: `
     :host {
       --color: var(--grey-color);
       display: block;
@@ -36,7 +35,8 @@ import { AbstractSectionComponent } from './abstract-section.component';
           margin: var(--text-margin) 0 0 0;
         }
         .actions {
-          text-align: right;
+          float: right;
+          display: flex;
           margin-bottom: var(--text-margin);
         }
       }
@@ -54,7 +54,7 @@ import { AbstractSectionComponent } from './abstract-section.component';
       }
     }
   `,
-    template: `
+  template: `
     <header [class]="_section().headerPosition">
       <h2>{{ _section().header }}</h2>
     </header>
@@ -88,8 +88,8 @@ import { AbstractSectionComponent } from './abstract-section.component';
       }
     </div>
   `,
-    imports: [RouterModule],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  imports: [RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppSectionTextComponent extends AbstractSectionComponent<CMSSectionTypeText> {
   @Input() set section(section: CMSSection) {

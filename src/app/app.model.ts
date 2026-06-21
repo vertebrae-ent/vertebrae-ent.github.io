@@ -140,7 +140,7 @@ export interface CMSLinks {
    */
   url?: string | SafeUrl;
   action?: string;
-  safeAction: () => void;
+  safeAction?: () => void;
   /**
    * The image to display for this link.
    *

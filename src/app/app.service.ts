@@ -8,7 +8,8 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { marked } from 'marked';
-import { firstValueFrom, map } from 'rxjs';
+import { map } from 'rxjs';
+import appConfig from '../.root/index.json';
 import { CMSConfig, CMSLinks } from './app.model';
 import { setupMarked } from './shared/marked.config';
 
@@ -16,19 +17,13 @@ import { setupMarked } from './shared/marked.config';
  * The main application service will read in the configuration,
  * validate it and provide functionality for sanitizing the data.
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AppService {
-  config: WritableSignal<CMSConfig> = signal({} as CMSConfig);
+  config: WritableSignal<CMSConfig> = signal(appConfig as CMSConfig);
   sec = inject(DomSanitizer);
   showNewsLetterDialog$: EventEmitter<string> = new EventEmitter();
 
   constructor(private http: HttpClient) {
-    // It will read the `./index.json` file when the service is created
-    // and make the configuration available via the `config` property.
-    firstValueFrom(this.http.get<CMSConfig>('/index.json')).then((config) =>
-      this.config.set(config),
-    );
-
     setupMarked();
   }
 

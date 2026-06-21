@@ -32,10 +32,10 @@
     .knuckles {
       position: absolute;
       width: auto;
-      right: 0;
+      right: var(--text-margin);
       opacity: 0;
       z-index: 11;
-      top: 0;
+      top: 0.5em;
       transform-origin: right center;
       transform: rotateY(90deg);
       transition-duration: 0.1s;

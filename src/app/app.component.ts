@@ -1,18 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   HostBinding,
-  HostListener,
   OnInit,
   computed,
   inject,
-  signal,
-  viewChild,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CMSLinks, CMSSectionTypeSocial } from './app.model';
 import { AppService } from './app.service';
+import { SeoService } from './seo.service';
 import { AppLinkListComponent } from './shared/link-list.component';
 import { AppTooltipDirective } from './shared/tooltip.directive';
 
@@ -31,10 +28,10 @@ import { AppTooltipDirective } from './shared/tooltip.directive';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterModule, AppLinkListComponent, AppTooltipDirective],
-  providers: [AppService],
 })
 export class AppComponent implements OnInit {
   service = inject(AppService);
+  seoService = inject(SeoService);
 
   @HostBinding('class') className = 'app-root';
 
@@ -59,6 +56,7 @@ export class AppComponent implements OnInit {
    * Component initializer.
    */
   ngOnInit(): void {
+    this.seoService.init();
     // this.service.showNewsLetterDialog$.subscribe((val) =>
     //   this.openNagDialog(undefined, true),
     // );
@@ -66,7 +64,7 @@ export class AppComponent implements OnInit {
 
   runAction(link: CMSLinks) {
     try {
-      link.safeAction();
+      link.safeAction?.();
     } catch (ex) {
       console.log(ex);
     }
